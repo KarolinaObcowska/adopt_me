@@ -68,5 +68,26 @@ export async function deleteAnimal (req, res, next) {
     }
 }
 
-export async function updateAnimal () {
+export async function updateAnimal (req, res, next) {
+    const animalId = req.params.id
+    const { type, breed, name, age } = req.body
+    try {
+        let animal = await Animal.findById(animalId)
+        if (!animal) {
+            const error = new Error('Coult not find animal')
+            error.statusCode = 404
+            throw error
+        }
+        animal.type = type
+        animal.breed = breed
+        animal.name = name
+        animal.age = age
+        const updatedAnimal = await animal.save()
+        res.status(200).json({ msg: 'Animal updated' })
+    } catch (error) {
+        if (!error.statusCode) {
+            error.statusCode = 500
+        }
+        next(error)
+    }
 }
