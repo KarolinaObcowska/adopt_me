@@ -1,5 +1,5 @@
-import { Router } from 'exppress'
-import { } from '../controller/animal.js'
+import { Router } from 'express'
+import { createAnimal, getAllAnimals, getAnimalById, deleteAnimal, updateAnimal } from '../controller/animal.js'
 
 const router = Router();
 
@@ -14,4 +14,4 @@ router
     .delete(deleteAnimal)
     .put(updateAnimal)
 
-export default router()
+export default router

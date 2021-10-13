@@ -1,0 +1,43 @@
+import {Animal} from '../model/animal.js'
+
+export async function createAnimal (req, res, next) {
+    const { type, breed, name, age } = req.body
+    try {
+        const animal = new Animal({
+            type,
+            breed,
+            name,
+            age
+        })
+        await animal.save()
+        res.status(201).json({ msg: 'Animal created' })
+    } catch (error) {
+        if (!error.statusCode) {
+            error.statusCode = 500
+        }
+        next(err)
+    }
+}
+
+export async function getAllAnimals (req, res, next) {
+    try {
+        const animals = await Animal
+            .find()
+            .sort({ createdAt: -1 })
+        res.status(200).json({ msg: 'fetched animals', animals: animals})
+    } catch (error) {
+        if (!error.statusCode) {
+            error.statusCode = 500
+        }
+        next(error)
+    }    
+}
+export async function getAnimalById () {
+
+}
+export async function deleteAnimal () {
+
+}
+
+export async function updateAnimal () {
+}
