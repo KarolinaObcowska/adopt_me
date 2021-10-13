@@ -1,8 +1,19 @@
 import express from 'express'
-import { urlencoded } from 'body-parser'
+import { json, urlencoded } from 'body-parser'
+import userRouter from './routes/user.js'
+import animalRouter from './routes/animal.js'
+
 export const app = express()
 
+app.use(json())
 app.use(urlencoded({ extended: true }))
+
+app.use('/auth', userRouter)
+app.use('/animal', animalRouter)
+
+app.get('/', (req, res) => {
+  res.send('API running');
+});
 
 export const start = () => {
   app.listen(8080, () => {
