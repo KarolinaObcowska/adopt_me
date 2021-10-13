@@ -32,8 +32,23 @@ export async function getAllAnimals (req, res, next) {
         next(error)
     }    
 }
-export async function getAnimalById () {
 
+export async function getAnimalById (req, res, next) {
+    const animalId = req.params.id
+    try {
+        const animal = await Animal.findById(animalId)
+        if (!animal) {
+            const error = new Error('Could not find animal')
+            error.statusCode = 404;
+            throw error
+        }
+        res.status(200).json({ msg: 'Animal fetched', animal})
+    } catch (error) {
+        if (!error.statusCode) {
+            error.statusCode = 500
+        }
+        next(error)
+    }
 }
 export async function deleteAnimal () {
 
