@@ -1,5 +1,6 @@
 import express from 'express'
-import { json, urlencoded } from 'body-parser'
+import pkg from 'body-parser'
+const { json, urlencoded } = pkg
 import userRouter from './routes/user.js'
 import animalRouter from './routes/animal.js'
 import { handleError } from './middleware/error.js'

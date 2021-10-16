@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs'
 import { ErrorHandler } from '../middleware/error.js'
 import { User } from '../model/user.js'
 
-export async function signup (req, res, next) {
+export async function signup(req, res, next) {
   try {
     const { firstname, lastname, email, password } = req.body
     if (!email || !password || !lastname || !firstname) {
@@ -32,7 +32,10 @@ export async function login(req, res, next) {
     }
     let user = await User.findOne({ email })
     if (!user) {
-      throw new ErrorHandler(401, 'User with this email could not be found, please SignUp')
+      throw new ErrorHandler(
+        401,
+        'User with this email could not be found, please SignUp'
+      )
     }
     newUser = user
     const checkPassword = await bcrypt.compare(password, newUser.password)
