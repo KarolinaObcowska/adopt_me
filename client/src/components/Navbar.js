@@ -20,7 +20,7 @@ const Navbar = () => {
   },[isOpen])
 
   return (
-    <nav ref={ref} className="w-full fixed bg-green-800 flex p-6 justify-center">
+    <nav ref={ref} className="w-full fixed bg-green-800 flex p-6 justify-center z-50">
       <div className="flex items-center justify-between flex-wrap md:w-4/5 w-screen">
         <div className="flex items-center flex-shrink-0 text-white mr-6">
           <img
@@ -30,10 +30,10 @@ const Navbar = () => {
           ></img>
           <span className="font-semibold text-3xl">Adopt Me</span>
         </div>
-        <div class="block lg:flex items-center w-auto">
-          <div class="block">
+        <div className="block lg:flex items-center w-auto">
+          <div className="block">
             <button
-              className="flex items-center px-3 py-2 border rounded text-white border-white hover:text-white hover:border-white"
+              className="flex items-center px-3 py-2 border rounded text-white border-white hover:text-yellow-400 hover:border-yellow-400"
               onClick={() => setNavbarOpen(!isOpen)}
             >
               <svg
@@ -57,26 +57,26 @@ const Navbar = () => {
               <button
                 onClick={() => setNavbarOpen(!isOpen)}
                 href="#responsive-header"
-                className="block m-4 border-transparent border-b rounded text-white hover:border-white text-xl"
+                className="block m-4 border-transparent border-b rounded text-white hover:border-yellow-400 text-xl"
               >
                 Animals for adopt
               </button>
               <button
                 onClick={() => setNavbarOpen(!isOpen)}
                 href="#responsive-header"
-                className="block m-4 text-white text-xl border-transparent border-b rounded hover:border-white"
+                className="block m-4 text-white text-xl border-transparent border-b rounded hover:border-yellow-400"
               >
                 Blog
               </button>
               <button
                 onClick={() => setNavbarOpen(!isOpen)}
-                className="inline-block text-xl px-4 py-2 leading-none border-transparent border-b rounded text-white hover:border-white m-3"
+                className="inline-block text-xl px-4 py-2 leading-none border-transparent border-b rounded text-white hover:border-yellow-400 m-3"
               >
                 Login
               </button>
               <button
                 onClick={() => setNavbarOpen(!isOpen)}
-                className=" inline-block text-xl px-4 py-2 leading-none border-transparent border-b rounded text-white hover:border-white m-3"
+                className=" inline-block text-xl px-4 py-2 leading-none border-transparent border-b rounded text-white hover:border-yellow-400 m-3"
               >
                 Sign Up
               </button>
