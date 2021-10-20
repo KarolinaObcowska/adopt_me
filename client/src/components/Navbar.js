@@ -1,36 +1,38 @@
 import React, { useState, useRef, useEffect } from "react";
 import Logo from "../images/logo.svg";
-import Paw from '../images/paw.svg'
 
 const Navbar = () => {
-  const ref = useRef()
+  const ref = useRef();
 
   const [isOpen, setNavbarOpen] = useState();
 
   useEffect(() => {
-      const checkIfClickedOutside = e => {
-          if(isOpen && ref.current && !ref.current.contains(e.target)) {
-              setNavbarOpen(false)
-          }
+    const checkIfClickedOutside = (e) => {
+      if (isOpen && ref.current && !ref.current.contains(e.target)) {
+        setNavbarOpen(false);
       }
-      document.addEventListener('click', checkIfClickedOutside)
-      return () => {
-          document.removeEventListener('click', checkIfClickedOutside)
-      }
-  },[isOpen])
+    };
+    document.addEventListener("click", checkIfClickedOutside);
+    return () => {
+      document.removeEventListener("click", checkIfClickedOutside);
+    };
+  }, [isOpen]);
 
   return (
-    <nav ref={ref} className="w-full fixed bg-green-800 flex p-6 justify-center z-50">
-      <div className="flex items-center justify-between flex-wrap md:w-4/5 w-screen">
+    <nav
+      ref={ref}
+      className="w-full fixed sm:flex bg-green-800 hidden h-14 p-4 sm:p-6 sm:h-20 justify-center z-50"
+    >
+      <div className="h-2 sm:h-10 flex items-center justify-between flex-wrap md:w-4/5 w-screen">
         <div className="flex items-center flex-shrink-0 text-white mr-6">
           <img
-            className="fill-current h-10 w-10 mr-4"
+            className="fill-current h-5 w-5 sm:h-10 sm:w-10 mb-4 sm:mb-0 mr-4"
             src={Logo}
             alt="pet paws"
           ></img>
-          <span className="font-semibold text-3xl">Adopt Me</span>
+          <span className="font-semibold mb-3 sm:mb-0 text-xl sm:text-3xl">Adopt Me</span>
         </div>
-        <div className="block lg:flex items-center w-auto">
+        <div className="hidden sm:flex items-center w-auto">
           <div className="block">
             <button
               className="flex items-center px-3 py-2 border rounded text-white border-white hover:text-yellow-400 hover:border-yellow-400"
@@ -80,12 +82,6 @@ const Navbar = () => {
               >
                 Sign Up
               </button>
-              <img src={Paw} className='absolute right-48 top-12 -rotate-45 transform animate-pulseFirst h-7 w-7' alt='paws'/>
-              <img src={Paw} className='absolute right-48 bottom-16 -rotate-45 transform animate-pulse h-7 w-7' alt='paws'/>
-              <img src={Paw} className='absolute right-60 top-2 -rotate-45 transform animate-pulseFirst h-7 w-7' alt='paws'/>
-              <img src={Paw} className='absolute right-72 bottom-24 z-50 -rotate-45 transform animate-pulse h-7 w-7' alt='paws'/>
-              <img src={Paw} className='absolute right-60 bottom-28 -rotate-45 transform animate-pulseFirst h-7 w-7' alt='paws'/>
-
             </div>
           </div>
         </div>

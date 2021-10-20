@@ -1,20 +1,23 @@
 import React from "react";
 import Navbar from "./Navbar";
-import Animals from "./Animals";
+// import Animals from "./Animals";
+import Hero from './Hero';
 import Footer from "./Footer";
+import MobileNavbar from "./MobileNavbar";
 const Layout = () => {
   return (
-    <div className='overflow-y w-screen'>
-    <Navbar />
-    <div className='absolute top-36'>
-  <Animals />
+    <div className="w-screen">
+      <Navbar />
+      {/* <div className="absolute top-36">
+        <Animals />
+      </div> */}
+      <MobileNavbar />
+        <Hero />
+      <div>
+        <Footer />
+      </div>
     </div>
-    <div>
-    <Footer />
-    </div>
-  </div>
-  )
-  
+  );
 };
 
 export default Layout;
