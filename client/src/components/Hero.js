@@ -53,16 +53,16 @@ const Hero = () => {
     </button>
   )
 
-  const arrowStyle = 'absolute text-white text-2xl z-2 bg-gray-700 h-10 w-10 rounded-full opacity-75 flex items-center justify-center'
+  const arrowStyle = 'absolute text-white text-xl z-2 bg-gray-700 h-10 w-10 rounded-full opacity-75 flex items-center justify-center'
   
   return (
-    <div className="absolute top-20 sm:top-32 w-screen bg-white-100 flex justify-center">
+    <div className="absolute top-14 sm:top-30 mt-3 w-screen bg-white-100 flex justify-center">
       <div className="flex items-center flex-col justify-center flex-wrap md:w-4/5 w-screen">
         <div className='carousel'>
         {sliderControl(true)}
         {images.map((img, i) => (
           <div className='w-full flex-shrink-0' key={img} ref={refs[i]}>
-            <img src={img} className='object-fit m-auto w-full sm:max-w-md' alt='woman with dog'/>
+            <img src={img} className='object-fit mt-6 m-auto w-full sm:max-w-md' alt='woman with dog'/>
         </div>
         ))}
         {sliderControl()}

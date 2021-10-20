@@ -13,9 +13,7 @@ const Layout = () => {
       </div> */}
       <MobileNavbar />
         <Hero />
-      <div>
         <Footer />
-      </div>
     </div>
   );
 };

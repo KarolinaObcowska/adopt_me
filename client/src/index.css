@@ -12,7 +12,8 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-nav {
+nav,
+footer {
 	font-family: 'Indie Flower', cursive;
 }
 
