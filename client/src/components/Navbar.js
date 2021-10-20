@@ -30,7 +30,9 @@ const Navbar = () => {
             src={Logo}
             alt="pet paws"
           ></img>
-          <span className="font-semibold mb-3 sm:mb-0 text-xl sm:text-3xl">Adopt Me</span>
+          <span className="font-semibold mb-3 sm:mb-0 text-xl sm:text-3xl">
+            Adopt Me
+          </span>
         </div>
         <div className="hidden sm:flex items-center w-auto">
           <div className="block">

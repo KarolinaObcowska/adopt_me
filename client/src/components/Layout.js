@@ -1,7 +1,9 @@
 import React from "react";
 import Navbar from "./Navbar";
 // import Animals from "./Animals";
-import Hero from './Hero';
+import Hero from "./Hero";
+import SignUpForm from './SignUpForm'
+import LoginForm from "./LoginForm";
 import Footer from "./Footer";
 import MobileNavbar from "./MobileNavbar";
 const Layout = () => {
@@ -12,8 +14,10 @@ const Layout = () => {
         <Animals />
       </div> */}
       <MobileNavbar />
-        <Hero />
-        <Footer />
+      {/* <Hero /> */}
+      {/* <SignUpForm /> */}
+      <LoginForm />
+      <Footer />
     </div>
   );
 };
