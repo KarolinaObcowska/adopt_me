@@ -14,16 +14,13 @@ const Animal = () => {
         <div className="px-6">
           <img
             src={Golden}
-            className="inline ms:ml-0 h-44 w-44 sm:h-60 sm:w-60 rounded-full object-cover"
+            className="border-4 border-solid border-yellow-400 inline ms:ml-0 h-44 w-44 sm:h-60 sm:w-60 rounded-full object-cover"
             alt=""
           />
-          <span className="inline ml-6 text-3xl font-bold text-green-700">
-            JACKIE
+          <span className="inline ml-6 text-5xl font-bold text-green-700">
+            Stefan 
           </span>
-          <p className="my-4 text-center text-md text-gray-600 font-light">
-            Golden Retriver, 3 years old
-          </p>
-          <div className="text-justify">
+          <div className="mt-10 text-justify">
             <p className="tab text-md text-gray-600 font-light">
               The Golden Retriever, an exuberant Scottish gundog of great
               beauty, stands among America's most popular dog breeds. They are
@@ -40,35 +37,55 @@ const Animal = () => {
               Goldens move with a smooth, powerful gait, and the feathery tail
               is carried, as breed fanciers say, with a 'merry action.'
             </p>
+            <p className="tab text-md text-gray-600 font-light">
+            The most complete records of the development of the Golden Retriever are included in the record books that were kept from 1835 until about 1890 by the gamekeepers at the Guisachan (pronounced Gooeesicun) estate of Lord Tweedmouth at Inverness-Shire, Scotland. These records were released to public notice in Country Life in 1952, when Lord Tweedmouth's great-nephew, the sixth Earl of Ilchester, historian and sportsman, published material that had been left by his ancestor. 
+            </p>
           </div>
+          <div className="my-6 hidden md:flex justify-center items-center">
+          <button
+            type="submit"
+            className="bg-yellow-400 hover:bg-yellow-500 p-2 w-1/2 rounded-md text-white uppercase"
+          >
+            Adopt Jackie
+          </button>
         </div>
-        <div className="container grid mt-8 sm:mt-0 grid-cols-2 grid-flow-row gap-1 px-6">
-    <div className="w-full rounded">
-        <img src={g3}
-            alt="asd" />
+        </div>
+        <div className="container mx-auto md:mt-0 mt-6 px-6">
+  <div className="flex flex-row flex-wrap -mx-2">
+    <div className="w-full md:w-1/2 h-64 md:h-auto mb-4 px-2">
+      <img className="object-cover w-full h-full" src={g1} alt='dog'/>
     </div>
-    <div className="w-full rounded">
-        <img src={g2}
-            alt="asd" />
-    </div>
-    <div className="w-full rounded">
-        <img src={g1}
-            alt="asd" />
-    </div>
-    <div className="w-full rounded">
-        <img src={g4}
-            alt="asd" />
-    </div>
-    <div className="w-full rounded">
-        <img src={g5}
-            alt="asd" />
-    </div>
-    <div className="w-full rounded">
-        <img src={g6}
-            alt="asd" />
-    </div>
-</div>
+    <div className="w-full md:w-1/2 mb-4 px-2">
+      <div className="flex flex-col sm:flex-row md:flex-col -mx-2">
+        <div className="w-full sm:w-1/2 md:w-full h-48 xl:h-64 mb-4 sm:mb-0 md:mb-4 px-2">
+          <img className="object-cover w-full h-full" src={g6} alt='dog'/>
+        </div>
+        <div className="w-full sm:w-1/2 md:w-full h-48 xl:h-64 px-2">
+          <img className="object-cover w-full h-full" src={g3} alt='dog'/>
+        </div>
       </div>
+    </div>
+    <div className="w-full sm:w-1/3 h-32 md:h-48 mb-4 sm:mb-0 px-2">
+      <img className="object-cover w-full h-full" src={g4} alt='dog'/>
+    </div>
+    <div className="w-full sm:w-1/3 h-32 md:h-48 mb-4 sm:mb-0 px-2">
+      <img className="object-cover w-full h-full" src={g5} alt='dog'/>
+    </div>
+    <div className="w-full sm:w-1/3 h-32 md:h-48 px-2">
+      <img className="object-cover w-full h-full" src={g6} alt='dog'/>
+    </div>
+  </div>
+</div>
+<div className="m-6 md:hidden flex justify-center items-center">
+          <button
+            type="submit"
+            className="bg-yellow-400 hover:bg-yellow-500 p-2 w-full rounded-md text-white uppercase"
+          >
+            Adopt Jackie
+          </button>
+        </div>
+      </div>
+
     </div>
   );
 };

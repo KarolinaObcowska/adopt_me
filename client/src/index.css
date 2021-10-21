@@ -16,7 +16,8 @@ html {
 }
 
 nav,
-footer {
+footer,
+span {
 	font-family: 'Indie Flower', cursive;
 }
 
