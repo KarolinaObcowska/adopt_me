@@ -1,22 +1,23 @@
 import React from "react";
 import Navbar from "./Navbar";
-// import Animals from "./Animals";
+import Animals from "./Animals";
 import Hero from "./Hero";
-import SignUpForm from './SignUpForm'
+import SignUpForm from "./SignUpForm";
 import LoginForm from "./LoginForm";
+import Animal from "./Animal";
 import Footer from "./Footer";
 import MobileNavbar from "./MobileNavbar";
 const Layout = () => {
   return (
-    <div className="w-screen">
+    <div className="overflow-y-scroll h-full">
       <Navbar />
-      {/* <div className="absolute top-36">
-        <Animals />
-      </div> */}
+
       <MobileNavbar />
+      {/* <Animals /> */}
       {/* <Hero /> */}
       {/* <SignUpForm /> */}
-      <LoginForm />
+      {/* <LoginForm /> */}
+      <Animal />
       <Footer />
     </div>
   );

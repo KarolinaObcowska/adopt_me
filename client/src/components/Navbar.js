@@ -21,7 +21,7 @@ const Navbar = () => {
   return (
     <nav
       ref={ref}
-      className="w-full fixed sm:flex bg-green-800 hidden h-14 p-4 sm:p-6 sm:h-20 justify-center z-50"
+      className="w-full fixed flex bg-green-800  h-14 p-4 sm:p-6 sm:h-20 justify-center z-50"
     >
       <div className="h-2 sm:h-10 flex items-center justify-between flex-wrap md:w-4/5 w-screen">
         <div className="flex items-center flex-shrink-0 text-white mr-6">
