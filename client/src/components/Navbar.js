@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import Logo from "../images/logo.svg";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const ref = useRef();
@@ -24,7 +25,10 @@ const Navbar = () => {
       className="w-full fixed flex bg-green-800  h-14 p-4 sm:p-6 sm:h-20 justify-center z-50"
     >
       <div className="h-2 sm:h-10 flex items-center justify-between flex-wrap md:w-4/5 w-screen">
-        <div className="flex items-center flex-shrink-0 text-white mr-6">
+        <Link
+          to="/"
+          className="flex items-center flex-shrink-0 text-white mr-6"
+        >
           <img
             className="fill-current h-5 w-5 sm:h-10 sm:w-10 mb-4 sm:mb-0 mr-4"
             src={Logo}
@@ -33,7 +37,7 @@ const Navbar = () => {
           <span className="font-semibold mb-3 sm:mb-0 text-xl sm:text-3xl">
             Adopt Me
           </span>
-        </div>
+        </Link>
         <div className="hidden sm:flex items-center w-auto">
           <div className="block">
             <button
@@ -59,26 +63,29 @@ const Navbar = () => {
             }
           >
             <div className="w-4/5 flex justify-center">
-              <button
+              <Link
+                to="/animals"
                 onClick={() => setNavbarOpen(!isOpen)}
                 href="#responsive-header"
                 className="block m-4 border-transparent border-b rounded text-white hover:border-yellow-400 text-xl"
               >
                 Animals for adopt
-              </button>
-              
-              <button
+              </Link>
+
+              <Link
+                to="/auth/login"
                 onClick={() => setNavbarOpen(!isOpen)}
                 className="inline-block text-xl px-4 py-2 leading-none border-transparent border-b rounded text-white hover:border-yellow-400 m-3"
               >
                 Login
-              </button>
-              <button
+              </Link>
+              <Link
+                to="/auth/signup"
                 onClick={() => setNavbarOpen(!isOpen)}
                 className=" inline-block text-xl px-4 py-2 leading-none border-transparent border-b rounded text-white hover:border-yellow-400 m-3"
               >
                 Sign Up
-              </button>
+              </Link>
             </div>
           </div>
         </div>

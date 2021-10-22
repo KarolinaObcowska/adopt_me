@@ -1,11 +1,11 @@
 import React from "react";
 import Golden from "../images/golden.jpg";
-import g1 from '../images/golden1.jpg'
-import g2 from '../images/golden2.jpg'
-import g3 from '../images/golden3.jpg'
-import g4 from '../images/golden4.jpg'
-import g5 from '../images/golden5.jpg'
-import g6 from '../images/golden6.jpg'
+import g1 from "../images/golden1.jpg";
+import g2 from "../images/golden2.jpg";
+import g3 from "../images/golden3.jpg";
+import g4 from "../images/golden4.jpg";
+import g5 from "../images/golden5.jpg";
+import g6 from "../images/golden6.jpg";
 
 const Animal = () => {
   return (
@@ -18,7 +18,7 @@ const Animal = () => {
             alt=""
           />
           <span className="inline ml-6 text-5xl font-bold text-green-700">
-            Stefan 
+            Stefan
           </span>
           <div className="mt-10 text-justify">
             <p className="tab text-md text-gray-600 font-light">
@@ -38,45 +38,60 @@ const Animal = () => {
               is carried, as breed fanciers say, with a 'merry action.'
             </p>
             <p className="tab text-md text-gray-600 font-light">
-            The most complete records of the development of the Golden Retriever are included in the record books that were kept from 1835 until about 1890 by the gamekeepers at the Guisachan (pronounced Gooeesicun) estate of Lord Tweedmouth at Inverness-Shire, Scotland. These records were released to public notice in Country Life in 1952, when Lord Tweedmouth's great-nephew, the sixth Earl of Ilchester, historian and sportsman, published material that had been left by his ancestor. 
+              The most complete records of the development of the Golden
+              Retriever are included in the record books that were kept from
+              1835 until about 1890 by the gamekeepers at the Guisachan
+              (pronounced Gooeesicun) estate of Lord Tweedmouth at
+              Inverness-Shire, Scotland. These records were released to public
+              notice in Country Life in 1952, when Lord Tweedmouth's
+              great-nephew, the sixth Earl of Ilchester, historian and
+              sportsman, published material that had been left by his ancestor.
             </p>
           </div>
           <div className="my-6 hidden md:flex justify-center items-center">
-          <button
-            type="submit"
-            className="bg-yellow-400 hover:bg-yellow-500 p-2 w-1/2 rounded-md text-white uppercase"
-          >
-            Adopt Jackie
-          </button>
-        </div>
+            <button
+              type="submit"
+              className="bg-yellow-400 hover:bg-yellow-500 p-2 w-1/2 rounded-md text-white uppercase"
+            >
+              Adopt Jackie
+            </button>
+          </div>
         </div>
         <div className="container mx-auto md:mt-0 mt-6 px-6">
-  <div className="flex flex-row flex-wrap -mx-2">
-    <div className="w-full md:w-1/2 h-64 md:h-auto mb-4 px-2">
-      <img className="object-cover w-full h-full" src={g1} alt='dog'/>
-    </div>
-    <div className="w-full md:w-1/2 mb-4 px-2">
-      <div className="flex flex-col sm:flex-row md:flex-col -mx-2">
-        <div className="w-full sm:w-1/2 md:w-full h-48 xl:h-64 mb-4 sm:mb-0 md:mb-4 px-2">
-          <img className="object-cover w-full h-full" src={g6} alt='dog'/>
+          <div className="flex flex-row flex-wrap -mx-2">
+            <div className="w-full md:w-1/2 h-64 md:h-auto mb-4 px-2">
+              <img className="object-cover w-full h-full" src={g1} alt="dog" />
+            </div>
+            <div className="w-full md:w-1/2 mb-4 px-2">
+              <div className="flex flex-col sm:flex-row md:flex-col -mx-2">
+                <div className="w-full sm:w-1/2 md:w-full h-48 xl:h-64 mb-4 sm:mb-0 md:mb-4 px-2">
+                  <img
+                    className="object-cover w-full h-full"
+                    src={g6}
+                    alt="dog"
+                  />
+                </div>
+                <div className="w-full sm:w-1/2 md:w-full h-48 xl:h-64 px-2">
+                  <img
+                    className="object-cover w-full h-full"
+                    src={g3}
+                    alt="dog"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="w-full sm:w-1/3 h-32 md:h-48 mb-4 sm:mb-0 px-2">
+              <img className="object-cover w-full h-full" src={g4} alt="dog" />
+            </div>
+            <div className="w-full sm:w-1/3 h-32 md:h-48 mb-4 sm:mb-0 px-2">
+              <img className="object-cover w-full h-full" src={g5} alt="dog" />
+            </div>
+            <div className="w-full sm:w-1/3 h-32 md:h-48 px-2">
+              <img className="object-cover w-full h-full" src={g6} alt="dog" />
+            </div>
+          </div>
         </div>
-        <div className="w-full sm:w-1/2 md:w-full h-48 xl:h-64 px-2">
-          <img className="object-cover w-full h-full" src={g3} alt='dog'/>
-        </div>
-      </div>
-    </div>
-    <div className="w-full sm:w-1/3 h-32 md:h-48 mb-4 sm:mb-0 px-2">
-      <img className="object-cover w-full h-full" src={g4} alt='dog'/>
-    </div>
-    <div className="w-full sm:w-1/3 h-32 md:h-48 mb-4 sm:mb-0 px-2">
-      <img className="object-cover w-full h-full" src={g5} alt='dog'/>
-    </div>
-    <div className="w-full sm:w-1/3 h-32 md:h-48 px-2">
-      <img className="object-cover w-full h-full" src={g6} alt='dog'/>
-    </div>
-  </div>
-</div>
-<div className="m-6 md:hidden flex justify-center items-center">
+        <div className="m-6 md:hidden flex justify-center items-center">
           <button
             type="submit"
             className="bg-yellow-400 hover:bg-yellow-500 p-2 w-full rounded-md text-white uppercase"
@@ -85,7 +100,6 @@ const Animal = () => {
           </button>
         </div>
       </div>
-
     </div>
   );
 };
