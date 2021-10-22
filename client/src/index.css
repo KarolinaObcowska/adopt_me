@@ -13,6 +13,7 @@ html {
 	-moz-osx-font-smoothing: grayscale;
 	min-height: 100%;
 	overflow: scroll;
+	background: url('./images/background.png');
 }
 
 nav,

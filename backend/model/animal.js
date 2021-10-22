@@ -11,6 +11,10 @@ const animalSchema = new mongoose.Schema({
     trim: true,
     required: true,
   },
+  describe: {
+    stype: String,
+    required: true
+  },
   breed: {
     type: String,
     trim: true,
@@ -21,6 +25,11 @@ const animalSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  images: [
+    {
+      type: String,
+    }
+  ]
 })
 
 export const Animal = mongoose.model('Animal', animalSchema)

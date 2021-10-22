@@ -39,6 +39,7 @@ const Navbar = () => {
             <button
               className="flex items-center px-3 py-2 border rounded text-white border-white hover:text-yellow-400 hover:border-yellow-400"
               onClick={() => setNavbarOpen(!isOpen)}
+              aria-label="Menu"
             >
               <svg
                 className="fill-current h-3 w-3"
@@ -65,13 +66,7 @@ const Navbar = () => {
               >
                 Animals for adopt
               </button>
-              <button
-                onClick={() => setNavbarOpen(!isOpen)}
-                href="#responsive-header"
-                className="block m-4 text-white text-xl border-transparent border-b rounded hover:border-yellow-400"
-              >
-                Blog
-              </button>
+              
               <button
                 onClick={() => setNavbarOpen(!isOpen)}
                 className="inline-block text-xl px-4 py-2 leading-none border-transparent border-b rounded text-white hover:border-yellow-400 m-3"

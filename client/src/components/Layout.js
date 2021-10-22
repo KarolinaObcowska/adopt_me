@@ -4,6 +4,7 @@ import Animals from "./Animals";
 import Hero from "./Hero";
 import SignUpForm from "./SignUpForm";
 import LoginForm from "./LoginForm";
+import AddAnimalForm from "./AddAnimalForm";
 import Animal from "./Animal";
 import Footer from "./Footer";
 import MobileNavbar from "./MobileNavbar";
@@ -11,13 +12,13 @@ const Layout = () => {
   return (
     <div className="overflow-y-scroll h-full">
       <Navbar />
-
       <MobileNavbar />
       {/* <Animals /> */}
       {/* <Hero /> */}
       {/* <SignUpForm /> */}
       {/* <LoginForm /> */}
-      <Animal />
+      {/* <Animal /> */}
+      <AddAnimalForm />
       <Footer />
     </div>
   );
