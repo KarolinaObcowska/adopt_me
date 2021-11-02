@@ -27,7 +27,8 @@ const animalSchema = new mongoose.Schema({
   },
   images: [
     {
-      type: String,
+      data: Buffer,
+      contentType: String,
     },
   ],
 })

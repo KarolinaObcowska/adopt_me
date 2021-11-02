@@ -87,7 +87,7 @@ const Animal = () => {
               <img className="object-cover w-full h-full" src={g5} alt="dog" />
             </div>
             <div className="w-full sm:w-1/3 h-32 md:h-48 px-2">
-              <img className="object-cover w-full h-full" src={g6} alt="dog" />
+              <img className="object-cover w-full h-full" src={g2} alt="dog" />
             </div>
           </div>
         </div>

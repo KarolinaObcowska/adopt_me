@@ -18,4 +18,7 @@ router
   .delete(isAuth, deleteAnimal)
   .put(isAuth, updateAnimal)
 
+router
+// .route('/:id/images')
+// .post(isAuth, addImages)
 export default router

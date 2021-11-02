@@ -3,8 +3,9 @@ import { ErrorHandler } from '../middleware/error.js'
 
 export async function createAnimal(req, res, next) {
   try {
-    const { type, breed, name, age } = req.body
-    if (!type || !breed || !name || !age) {
+    const { type, breed, name, age, description } = req.body
+    const avatar = req.file
+    if (!type || !breed || !name || !age || !description) {
       throw new ErrorHandler(400, 'Missing required fields')
     }
     const animal = new Animal({
@@ -12,6 +13,8 @@ export async function createAnimal(req, res, next) {
       breed,
       name,
       age,
+      description,
+      avatar,
     })
     await animal.save()
     res.status(201).json({ msg: 'Animal created' })
