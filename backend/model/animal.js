@@ -11,7 +11,7 @@ const animalSchema = new mongoose.Schema({
     trim: true,
     required: true,
   },
-  describe: {
+  description: {
     type: String,
     required: true,
   },
@@ -25,12 +25,12 @@ const animalSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  images: [
-    {
-      data: Buffer,
-      contentType: String,
-    },
-  ],
+  // images: [
+  //   {
+  //     data: Buffer,
+  //     contentType: String,
+  //   },
+  // ],
 })
 
 export const Animal = mongoose.model('Animal', animalSchema)

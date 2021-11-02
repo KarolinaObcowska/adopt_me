@@ -13,8 +13,8 @@ app.use(urlencoded({ extended: true }))
 app.use('/auth', userRouter)
 app.use('/animal', animalRouter)
 
-app.use((err, req, res, next) => {
-  handleError(err, res)
+app.use((error, req, res, next) => {
+  handleError(error, res)
 })
 
 app.get('/', (req, res) => {
