@@ -21,7 +21,7 @@ const Layout = () => {
         <Route path="/auth/signup" exact component={SignUpForm} />
         <Route path="/auth/login" exact component={LoginForm} />
         <Route path="/animal/add" exact component={AddAnimalForm} />
-        <Route path='/animals/:id/addimages' exact/>
+        <Route path="/animals/:id/addimages" exact />
         <Footer />
       </Router>
     </div>
