@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, useParams } from "react-router-dom";
 import Navbar from "./Navbar";
 import Animals from "./Animals";
 import Hero from "./Hero";

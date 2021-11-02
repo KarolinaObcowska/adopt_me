@@ -10,11 +10,11 @@ import { isAuth } from '../middleware/isAuth.js'
 
 const router = Router()
 
-router.route('/').get(isAuth, getAllAnimals).post(createAnimal)
+router.route('/').get(getAllAnimals).post(isAuth, createAnimal)
 
 router
   .route('/:id')
-  .get(isAuth, getAnimalById)
+  .get(getAnimalById)
   .delete(isAuth, deleteAnimal)
   .put(isAuth, updateAnimal)
 

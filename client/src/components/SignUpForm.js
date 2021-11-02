@@ -1,6 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 
 const SignUpForm = () => {
+  const [user, setUser] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: ""
+  })
+  
   return (
     <div className="fixed top-20 sm:top-36 p-6 mt-3 w-screen bg-white-100 flex justify-center h-screen">
       <form className="w-full h-full max-w-lg">
