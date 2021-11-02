@@ -5,7 +5,7 @@ const Spinner = () => {
         <div className="w-screen flex mt-28 px-6 justify-center items-center mb-20"
         >
   <div
-    class="animate-spin rounded-full h-32 w-32 border-b-2 border-green-800"
+    className="animate-spin rounded-full h-32 w-32 border-b-2 border-green-800"
   ></div>
 </div>
     )

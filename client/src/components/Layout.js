@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, useParams } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navbar from "./Navbar";
 import Animals from "./Animals";
 import Hero from "./Hero";
@@ -17,10 +17,11 @@ const Layout = () => {
         <MobileNavbar />
         <Route path="/" exact component={Hero} />
         <Route path="/animals" exact component={Animals} />
-        <Route path="/animal/:id" exact component={Animal} />
+        <Route path="/animals/:id" exact component={Animal} />
         <Route path="/auth/signup" exact component={SignUpForm} />
         <Route path="/auth/login" exact component={LoginForm} />
         <Route path="/animal/add" exact component={AddAnimalForm} />
+        <Route path='/animals/:id/addimages' exact/>
         <Footer />
       </Router>
     </div>

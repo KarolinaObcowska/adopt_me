@@ -10,20 +10,15 @@ export const app = express()
 
 app.use(json())
 app.use(urlencoded({ extended: true }))
-app.use(cors())
+app.use(cors({
+  origin: [/^http:\/\/localhost/],
+  credentials: true
+}))
 app.use('/auth', userRouter)
 app.use('/animal', animalRouter)
 
 app.use((error, req, res, next) => {
   handleError(error, res)
-})
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  )
-  next()
 })
 
 app.get('/', (req, res) => {

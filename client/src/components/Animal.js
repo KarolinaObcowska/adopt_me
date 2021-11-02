@@ -17,7 +17,6 @@ const Animal = () => {
     async function fetchAnimalById() {
       const response = await fetch(`http://localhost:8080/animal/${id}`);
       const data = await response.json();
-      console.log(data.animal);
       setAnimal(data.animal);
     }
     fetchAnimalById();

@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Spinner from "./Spinner";
 import Golden from "../images/golden.jpg";
-import Border from "../images/border.jpg";
-import Husky from "../images/husky.jpg";
-import Lablador from "../images/lablador.jpg";
-import American from "../images/american.jpg";
-import Amstaff from "../images/amstaff.jpg";
 import { Link } from "react-router-dom";
 
 const Animals = () => {
@@ -29,7 +24,7 @@ const Animals = () => {
     >
       <div className="flex flex-row justify-center items-center flex-wrap md:w-4/5 w-screen">
         {animals.map((animal) => (
-          <div className="rounded-lg flex-1">
+          <div className="rounded-lg flex-1" key={animal._id}>
             <div className="bg-gray-200 rounded-lg mx-6 mb-6">
               <img
                 src={Golden}
@@ -47,7 +42,7 @@ const Animals = () => {
                 </p>
               </div>
               <Link
-                to={`/animal/${animal._id}`}
+                to={`/animals/${animal._id}`}
                 className="flex w-full h-12 text-xl justify-center items-center font-extrabold text-gray-100 transition duration-300 bg-yellow-400 rounded-b-lg hover:bg-yellow-500"
               >
                 See more

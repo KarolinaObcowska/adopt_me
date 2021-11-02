@@ -7,10 +7,28 @@ const SignUpForm = () => {
     email: "",
     password: ""
   })
-  
+  const handleChange = event => {
+    const {name, value} = event.target
+    setUser({
+      ...user,
+      [name]: value
+    })
+  }
+  function registerUser(event) {
+    event.preventDefault()
+    const {firstname, lastname, email, password} = user
+    fetch('http://localhost:8080/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+      })
+      console.log(user)
+  }
   return (
     <div className="fixed top-20 sm:top-36 p-6 mt-3 w-screen bg-white-100 flex justify-center h-screen">
-      <form className="w-full h-full max-w-lg">
+      <form className="w-full h-full max-w-lg" onSubmit={registerUser}>
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full px-3 mb-6 md:mb-4">
             <label
@@ -25,6 +43,8 @@ const SignUpForm = () => {
               name="email"
               type="text"
               aria-label="Your e-mail"
+              value={user.email} 
+              onChange={handleChange}
             />
           </div>
           <div className="w-full md:w-1/2 px-3 mb-8 md:mb-0">
@@ -38,7 +58,11 @@ const SignUpForm = () => {
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="firstname"
               type="text"
+              name="firstname"
+
               aria-label="Your first name"
+              value={user.firstname} 
+              onChange={handleChange}
             />
           </div>
           <div className="w-full md:w-1/2 px-3">
@@ -51,8 +75,12 @@ const SignUpForm = () => {
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="lastname"
+              name="lastname"
+
               type="text"
               aria-label="Your last name"
+              value={user.lastname} 
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -70,6 +98,8 @@ const SignUpForm = () => {
               name="password"
               type="password"
               aria-label="Your password"
+              value={user.password} 
+              onChange={handleChange}
             />
             <p className="text-gray-600 text-xs italic">
               Make it as long and as crazy as you'd like
