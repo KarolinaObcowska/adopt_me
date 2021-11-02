@@ -1,6 +1,11 @@
 import React, {useState} from "react";
+import { useHistory } from "react-router";
+import Modal from "./Modal";
 
 const LoginForm = () => {
+  const history = useHistory()
+  const [showModal, setShowModal] = useState(false)
+  const [message, setMessage] = useState('')
   const [user, setUser] = useState({
     email: "",
     password: ""
@@ -23,9 +28,19 @@ const LoginForm = () => {
         body: JSON.stringify(user)
       })
     const data = await res.json()
+    if (data.statusCode === 401 || data.statusCode === 400) {
+      setShowModal(true)
+      setMessage(data.msg)
+    } else {
+      history.push('/animals')
+    }
   }
   return (
-    <div className="fixed top-20 sm:top-36 p-6 mt-3 w-screen bg-white-100 flex items-center justify-center h-screen">
+    <> 
+    {showModal ? (
+      <Modal show={true} msg={message} />
+    ) : (
+<div className="fixed top-20 sm:top-36 p-6 mt-3 w-screen bg-white-100 flex items-center justify-center h-screen">
       <form className="w-full h-full max-w-lg" onSubmit={loginUser}>
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full px-3">
@@ -75,6 +90,8 @@ const LoginForm = () => {
         </div>
       </form>
     </div>
+    )}
+    </>
   );
 };
 

@@ -1,12 +1,19 @@
 import React, {useState} from "react";
+import { useHistory } from "react-router-dom";
+import Modal from './Modal'
 
 const SignUpForm = () => {
+
+  const history = useHistory()
   const [user, setUser] = useState({
     firstname: "",
     lastname: "",
     email: "",
     password: ""
   })
+  const [showModal, setShowModal] = useState(false)
+  const [message, setMessage] = useState('')
+
   const handleChange = event => {
     const {name, value} = event.target
     setUser({
@@ -14,19 +21,29 @@ const SignUpForm = () => {
       [name]: value
     })
   }
-  function registerUser(event) {
+  async function registerUser(event) {
     event.preventDefault()
     const {firstname, lastname, email, password} = user
-    fetch('http://localhost:8080/auth/signup', {
+    const res = await fetch('http://localhost:8080/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(user)
       })
-      console.log(user)
+      const data = await res.json()
+      if (data.statusCode === 401 || data.statusCode === 400) {
+        setShowModal(true)
+        setMessage(data.msg)
+      } else {
+        history.push('/animals')
+      }
   }
   return (
+    <> 
+    {showModal ? (
+      <Modal show={true} msg={message} />
+    ) : (
     <div className="fixed top-20 sm:top-36 p-6 mt-3 w-screen bg-white-100 flex justify-center h-screen">
       <form className="w-full h-full max-w-lg" onSubmit={registerUser}>
         <div className="flex flex-wrap -mx-3 mb-6">
@@ -116,6 +133,9 @@ const SignUpForm = () => {
         </div>
       </form>
     </div>
+    ) 
+}
+    </>
   );
 };
 
