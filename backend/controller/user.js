@@ -16,8 +16,18 @@ export async function signup(req, res, next) {
       email,
       password: hashedPassword,
     })
+    const token = jwt.sign(
+      {
+        email: user.email,
+        userId: user._id.toString(),
+      },
+      'secretkey',
+      {
+        expiresIn: '3h',
+      }
+    )
     const createdUser = await user.save()
-    res.status(200).json({ msg: 'User created', userId: createdUser._id })
+    res.status(200).json({ msg: 'User created', user: createdUser, token: token })
   } catch (error) {
     next(error)
   }
@@ -42,7 +52,7 @@ export async function login(req, res, next) {
     if (!checkPassword) {
       throw new ErrorHandler(401, 'Invalid data')
     }
-    const jwtToken = jwt.sign(
+    const token = jwt.sign(
       {
         email: newUser.email,
         userId: newUser._id.toString(),
@@ -54,7 +64,7 @@ export async function login(req, res, next) {
     )
     res
       .status(200)
-      .json({ msg: 'Logged', token: jwtToken, userId: newUser._id.toString() })
+      .json({ msg: 'Logged', token: token, userId: newUser._id.toString(), username: newUser.email })
   } catch (error) {
     next(error)
   }

@@ -35,7 +35,6 @@ const Animals = () => {
                     <div className="text-5xl font-bold text-green-700 uppercase text-center">
                       <span>{animal.name}</span>
                     </div>
-                    
                   </div>
                   <Link
                     to={`/animals/${animal._id}`}

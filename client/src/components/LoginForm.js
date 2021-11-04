@@ -28,6 +28,8 @@ const LoginForm = () => {
       body: JSON.stringify(user),
     });
     const data = await res.json();
+    localStorage.setItem('user', data)
+    console.log(data)
     if (data.statusCode === 401 || data.statusCode === 400) {
       setShowModal(true);
       setMessage(data.msg);

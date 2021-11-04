@@ -9,15 +9,14 @@ import AddAnimalForm from "./AddAnimalForm";
 import Animal from "./Animal";
 import Footer from "./Footer";
 import MobileNavbar from "./MobileNavbar";
-import Error404 from './Error404'
+import Error404 from "./Error404";
 
 const Layout = () => {
   return (
     <div className="overflow-y-scroll h-full">
-
       <Router>
-      <Navbar />
-          <MobileNavbar />
+        <Navbar />
+        <MobileNavbar />
         <Switch>
           <Route path="/" exact component={Hero} />
           <Route path="/animals" exact component={Animals} />
@@ -26,7 +25,7 @@ const Layout = () => {
           <Route path="/auth/login" exact component={LoginForm} />
           <Route path="/animal/add" exact component={AddAnimalForm} />
           <Route path="/animals/:id/addimages" exact />
-          <Route path="*" component={Error404}/>
+          <Route path="*" component={Error404} />
         </Switch>
         <Footer />
       </Router>
