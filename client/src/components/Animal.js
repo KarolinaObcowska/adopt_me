@@ -27,7 +27,7 @@ const Animal = () => {
       {!animal ? (
         <Spinner />
       ) : (
-        <div className="w-screen flex mt-28 mb-16 sm:px-24 justify-center">
+        <div className="w-screen flex mt-28  sm:px-24 justify-center">
           <div className="flex-1 mb-20 grid grid-cols-1 md:grid-cols-2 mx-6 sm:ml-0 sm:w-4/5 w-screen">
             <div className="px-6">
               <img
@@ -64,7 +64,7 @@ const Animal = () => {
               <div className="my-6 hidden md:flex justify-center items-center">
                 <button
                   type="submit"
-                  className="bg-yellow-400 hover:bg-yellow-500 p-2 w-1/2 rounded-md text-white uppercase"
+                  className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 p-2 w-1/2 rounded-md text-white uppercase"
                 >
                   Adopt {animal.name}
                 </button>
@@ -123,7 +123,7 @@ const Animal = () => {
             <div className="m-6 md:hidden flex justify-center items-center">
               <button
                 type="submit"
-                className="bg-yellow-400 hover:bg-yellow-500 p-2 w-full rounded-md text-white uppercase"
+                className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 p-2 w-full rounded-md text-white uppercase"
               >
                 Adopt {animal.name}
               </button>
