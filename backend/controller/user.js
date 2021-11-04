@@ -50,7 +50,7 @@ export async function login(req, res, next) {
     newUser = user
     const checkPassword = await bcrypt.compare(password, newUser.password)
     if (!checkPassword) {
-      throw new ErrorHandler(401, 'Invalid data')
+      throw new ErrorHandler(422, 'Invalid data')
     }
     const token = jwt.sign(
       {

@@ -5,7 +5,7 @@ import Modal from "./Modal";
 const LoginForm = () => {
   const history = useHistory();
   const [showModal, setShowModal] = useState(false);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -28,12 +28,17 @@ const LoginForm = () => {
       body: JSON.stringify(user),
     });
     const data = await res.json();
-    localStorage.setItem('user', data)
-    console.log(data)
-    if (data.statusCode === 401 || data.statusCode === 400) {
+    if (data.statusCode === 401 ) {
+      setShowModal(true);
+      setMessage(data.msg);
+      setTimeout(() => {
+        history.push("/auth/signup");
+      }, 3000)
+    } else if(data.statusCode === 422) {
       setShowModal(true);
       setMessage(data.msg);
     } else {
+      localStorage.setItem('user', data)
       history.push("/animals");
     }
   }

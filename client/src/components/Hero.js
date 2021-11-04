@@ -1,15 +1,6 @@
-import React, {useEffect} from "react";
+import React from "react";
 import HeroImg1 from "../images/herobg.jpg";
-import { isLogin } from "../utils/isLogin";
 const Hero = () => {
-  useEffect(() => {
-    const res = isLogin()
-    if(res === true) {
-      console.log("true")
-    } else {
-      console.log("false")
-    }
-  }, [])
   return (
     <div className="fixed w-screen h-screen flex justify-center">
       <div className="flex items-center flex-col justify-center flex-wrap">
