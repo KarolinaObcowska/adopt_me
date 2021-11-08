@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import Modal from "./Modal";
+import UserContext from '../utils/auth-context'
 
 const SignUpForm = () => {
   const history = useHistory();
@@ -10,6 +11,8 @@ const SignUpForm = () => {
     email: "",
     password: "",
   });
+
+  const { setToken } = useContext(UserContext)
   const [showModal, setShowModal] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -40,7 +43,9 @@ const SignUpForm = () => {
       setTimeout(() => {
         history.push("/auth/login")
       }, 3000)
-    }else {
+    } else {
+      setToken({token: data.token})
+      localStorage.setItem('auth-token', data.token)
       history.push("/animals");
     }
   }

@@ -24,7 +24,7 @@ const Animal = () => {
 
   async function handleAdoptAnimal(event) {
     event.preventDefault()
-    const animalToRemove = await fetch(`http://localhost:8080/animal/${id}`, {
+    await fetch(`http://localhost:8080/animal/${id}`, {
     method: "DELETE",
       headers: {
         "Content-Type": "application/json",

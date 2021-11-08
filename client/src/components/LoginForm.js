@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router";
 import Modal from "./Modal";
+import UserContext from '../utils/auth-context'
 
 const LoginForm = () => {
   const history = useHistory();
@@ -10,6 +11,8 @@ const LoginForm = () => {
     email: "",
     password: "",
   });
+
+  const {setToken} = useContext(UserContext)
   const handleChange = (event) => {
     const { name, value } = event.target;
     setUser({
@@ -38,7 +41,8 @@ const LoginForm = () => {
       setShowModal(true);
       setMessage(data.msg);
     } else {
-      localStorage.setItem('user', data)
+      localStorage.setItem('auth-token', data.token)
+      setToken({token: data.token})
       history.push("/animals");
     }
   }

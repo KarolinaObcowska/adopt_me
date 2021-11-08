@@ -1,14 +1,17 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Link } from 'react-router-dom'
 import { useHistory } from "react-router";
+import UserContext from '../utils/auth-context'
 
-const PrivateRoute = ({setNavbarOpen, isOpen, setIsAuthenticated}) => {
+const PrivateRoute = ({setNavbarOpen, isOpen}) => {
   const history = useHistory();
+  const {setToken} = useContext(UserContext)
 
   function handleLogout(e)  {
       e.preventDefault()
       setNavbarOpen(!isOpen)
-      localStorage.clear('user')
+      localStorage.setItem('auth-token', undefined)
+      setToken({ token: undefined})
       history.push("/")
     }
     return (
