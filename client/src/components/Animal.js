@@ -22,6 +22,18 @@ const Animal = () => {
     fetchAnimalById();
   }, [id]);
 
+  async function handleAdoptAnimal(event) {
+    event.preventDefault()
+    const animalToRemove = await fetch(`http://localhost:8080/animal/${id}`, {
+    method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    });
+    window.location.href = 'http://localhost:3000/animals'
+    window.open('https://www.schroniskowroclaw.pl/',
+    '_blank')
+  }
   return (
     <>
       {!animal ? (
@@ -44,14 +56,12 @@ const Animal = () => {
                 </p>
               </div>
               <div className="my-6 hidden md:flex justify-center items-center">
-                <Link
-                to={{ pathname: 'https://www.schroniskowroclaw.pl/' }} target="_blank"
-                  type="submit"
+                <button
+                  onClick={handleAdoptAnimal}
                   className="bg-gradient-to-r from-yellow-400 text-center to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 p-2 w-1/2 rounded-md text-white uppercase"
                 >
-                  
                   Adopt {animal.name}
-                </Link>
+                </button>
               </div>
             </div>
             <div className="container mx-auto md:mt-0 mt-6 px-6">
@@ -106,7 +116,7 @@ const Animal = () => {
             </div>
             <div className="m-6 md:hidden flex justify-center items-center">
               <button
-                type="submit"
+                onClick={handleAdoptAnimal}
                 className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 p-2 w-full rounded-md text-white uppercase"
               >
                 Adopt {animal.name}

@@ -15,7 +15,7 @@ router.route('/').get(getAllAnimals).post(createAnimal)
 router
   .route('/:id')
   .get(getAnimalById)
-  .delete(isAuth, deleteAnimal)
+  .delete(deleteAnimal)
   .put(isAuth, updateAnimal)
 
 router
