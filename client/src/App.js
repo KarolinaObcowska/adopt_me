@@ -9,7 +9,7 @@ function App() {
   }, [])
   return (
     <div className="App">
-      <Layout isAuthenticated={isAuthenticated}/>
+      <Layout isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}/>
     </div>
   );
 }

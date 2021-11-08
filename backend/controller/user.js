@@ -7,7 +7,11 @@ export async function signup(req, res, next) {
   try {
     const { firstname, lastname, email, password } = req.body
     if (!email || !password || !lastname || !firstname) {
-      throw new ErrorHandler(400, 'Missing required fields')
+      throw new ErrorHandler(422, 'Missing required fields')
+    }
+    let checkIfExist = await User.findOne({ email })
+    if(checkIfExist) {
+      throw new ErrorHandler(403, 'User with this email already exists, please log in')
     }
     const hashedPassword = await bcrypt.hash(password, 12)
     const user = new User({

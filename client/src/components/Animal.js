@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Spinner from "./Spinner";
 import Golden from "../images/golden.jpg";
 import g1 from "../images/golden1.jpg";
@@ -42,32 +42,16 @@ const Animal = () => {
                 <p className="tab text-md text-gray-600 font-light">
                   {animal.description}
                 </p>
-                {/* <p className="tab text-md text-gray-600 font-light">
-                The Golden Retriever is a sturdy, muscular dog of medium size,
-                famous for the dense, lustrous coat of gold that gives the breed
-                its name. The broad head, with its friendly and intelligent eyes,
-                short ears, and straight muzzle, is a breed hallmark. In motion,
-                Goldens move with a smooth, powerful gait, and the feathery tail
-                is carried, as breed fanciers say, with a 'merry action.'
-              </p>
-              <p className="tab text-md text-gray-600 font-light">
-                The most complete records of the development of the Golden
-                Retriever are included in the record books that were kept from
-                1835 until about 1890 by the gamekeepers at the Guisachan
-                (pronounced Gooeesicun) estate of Lord Tweedmouth at
-                Inverness-Shire, Scotland. These records were released to public
-                notice in Country Life in 1952, when Lord Tweedmouth's
-                great-nephew, the sixth Earl of Ilchester, historian and
-                sportsman, published material that had been left by his ancestor.
-              </p> */}
               </div>
               <div className="my-6 hidden md:flex justify-center items-center">
-                <button
+                <Link
+                to={{ pathname: 'https://www.schroniskowroclaw.pl/' }} target="_blank"
                   type="submit"
-                  className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 p-2 w-1/2 rounded-md text-white uppercase"
+                  className="bg-gradient-to-r from-yellow-400 text-center to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 p-2 w-1/2 rounded-md text-white uppercase"
                 >
+                  
                   Adopt {animal.name}
-                </button>
+                </Link>
               </div>
             </div>
             <div className="container mx-auto md:mt-0 mt-6 px-6">

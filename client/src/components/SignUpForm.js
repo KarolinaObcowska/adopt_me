@@ -31,10 +31,16 @@ const SignUpForm = () => {
       body: JSON.stringify(user),
     });
     const data = await res.json();
-    if (data.statusCode === 401 || data.statusCode === 400) {
+    if (data.statusCode === 422) {
       setShowModal(true);
       setMessage(data.msg);
-    } else {
+    } else if(data.statusCode === 403) {
+      setShowModal(true)
+      setMessage(data.msg)
+      setTimeout(() => {
+        history.push("/auth/login")
+      }, 3000)
+    }else {
       history.push("/animals");
     }
   }

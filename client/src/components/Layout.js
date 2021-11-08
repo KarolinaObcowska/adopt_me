@@ -11,22 +11,23 @@ import Footer from "./Footer";
 import MobileNavbar from "./MobileNavbar";
 import Error404 from "./Error404";
 
-const Layout = ({isAuthenticated}) => {
+const Layout = ({isAuthenticated, setIsAuthenticated}) => {
   
   return (
     <div className="overflow-y-scroll h-full">
       <Router>
-        <Navbar isAuthenticated={isAuthenticated} />
-        <MobileNavbar isAuthenticated={isAuthenticated}/>
+        <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}/>
+        <MobileNavbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}/>
         <Switch>
           <Route path="/" exact component={Hero} />
+          <Route path="/animals/add" exact component={AddAnimalForm} />
+
           <Route path="/animals" exact component={Animals} />
           <Route path="/animals/:id" exact component={Animal} />
           <Route path="/auth/signup" exact component={SignUpForm} />
           <Route path="/auth/login" exact component={LoginForm} />
-          <Route path="/animals/add" exact component={AddAnimalForm} />
-          <Route path="/animals/:id/addimages" exact />
-          <Route path="*" component={Error404} />
+          {/* <Route path="/animals/:id/addimages" exact /> */}
+          <Route path="*" exact component={Error404} />
         </Switch>
         <Footer />
       </Router>

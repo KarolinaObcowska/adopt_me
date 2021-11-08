@@ -25,7 +25,7 @@ export async function createAnimal(req, res, next) {
 
 export async function getAllAnimals(req, res, next) {
   try {
-    const animals = await Animal.find().sort({ createdAt: -1 })
+    const animals = await Animal.find().sort({ createdAt: 1 })
     if (!animals) {
       throw new ErrorHandler(401, 'Animals could not be found')
     }

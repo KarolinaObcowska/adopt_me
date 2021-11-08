@@ -10,7 +10,7 @@ import { isAuth } from '../middleware/isAuth.js'
 
 const router = Router()
 
-router.route('/').get(getAllAnimals).post(isAuth, createAnimal)
+router.route('/').get(getAllAnimals).post(createAnimal)
 
 router
   .route('/:id')
