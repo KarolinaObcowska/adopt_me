@@ -45,7 +45,7 @@ const SignUpForm = () => {
         navigate("/auth/login");
       }, 3000);
     } else {
-      setToken({ token: data.token });
+      setToken(true);
       navigate("/animals");
     }
   }

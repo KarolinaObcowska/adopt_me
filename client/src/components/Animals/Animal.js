@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import Spinner from "./Spinner";
-import Golden from "../images/golden.jpg";
-import g1 from "../images/golden1.jpg";
-import g2 from "../images/golden2.jpg";
-import g3 from "../images/golden3.jpg";
-import g4 from "../images/golden4.jpg";
-import g5 from "../images/golden5.jpg";
-import g6 from "../images/golden6.jpg";
+import { useParams } from "react-router-dom";
+import Spinner from "../Spinner";
+import Golden from "../../images/golden.jpg";
+import g1 from "../../images/golden1.jpg";
+import g2 from "../../images/golden2.jpg";
+import g3 from "../../images/golden3.jpg";
+import g4 from "../../images/golden4.jpg";
+import g5 from "../../images/golden5.jpg";
+import g6 from "../../images/golden6.jpg";
 
 const Animal = () => {
   const [animal, setAnimal] = useState();

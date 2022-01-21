@@ -45,7 +45,7 @@ const LoginForm = () => {
       setMessage(data.msg);
     } else {
       localStorage.setItem("auth-token", data.token);
-      setToken({ token: data.token });
+      setToken(true);
       navigate("/animals"); 
     }
   }

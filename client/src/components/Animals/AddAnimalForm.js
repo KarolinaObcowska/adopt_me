@@ -1,14 +1,14 @@
 import React, { useState, useContext } from "react";
-import UserContext from "../utils/auth-context";
+import UserContext from "../../utils/auth-context";
 import { useNavigate } from "react-router-dom";
-import Modal from "./Modal";
+import Modal from "../Modal";
+import Error404 from "../Error404";
 
 const AddAnimalForm = () => {
   const { token } = useContext(UserContext);
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [message, setMessage] = useState();
-
   const [animal, setAnimal] = useState({
     type: "",
     breed: "",
@@ -37,7 +37,6 @@ const AddAnimalForm = () => {
       body: JSON.stringify(animal),
     });
     const data =  await res.json();
-    console.log(data)
     if (res.status !== 201) {
       setShowModal(true);
       setMessage(data.msg);
@@ -47,11 +46,11 @@ const AddAnimalForm = () => {
   }
   return (
     <>
-    {token && (
-      showModal ? (
+    {token && token === true ? (
+<div className="fixed top-16 sm:top-30 p-6 mt-3 w-screen bg-white-100 flex items-center justify-center h-screen">
+  {showModal ? (
         <Modal show={true} msg={message} />
       ) : (
-<div className="fixed top-16 sm:top-30 p-6 mt-3 w-screen bg-white-100 flex items-center justify-center h-screen">
           <form className="w-full h-full max-w-lg" onSubmit={handleAddAnimal}>
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-1/2 px-3">
@@ -62,7 +61,7 @@ const AddAnimalForm = () => {
                   Animal
                 </label>
                 <input
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none  focus:border-yellow-500"
                   id="type"
                   type="text"
                   name="type"
@@ -80,7 +79,7 @@ const AddAnimalForm = () => {
                   Breed
                 </label>
                 <input
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none  focus:border-yellow-500"
                   id="breed"
                   name="breed"
                   type="text"
@@ -99,7 +98,7 @@ const AddAnimalForm = () => {
                   Name
                 </label>
                 <input
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none  focus:border-yellow-500"
                   id="name"
                   name="name"
                   type="text"
@@ -116,7 +115,7 @@ const AddAnimalForm = () => {
                   Age
                 </label>
                 <input
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none  focus:border-yellow-500"
                   id="age"
                   name="age"
                   type="text"
@@ -135,7 +134,7 @@ const AddAnimalForm = () => {
                   Description
                 </label>
                 <input
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none  focus:border-yellow-500"
                   id="grid-password"
                   type="text"
                   name="description"
@@ -171,12 +170,11 @@ const AddAnimalForm = () => {
               </button>
             </div>
           </form>
+          ) }
         </div>
-        ) 
-      )}
-      {
-        navigate('/auth/login')
-      }
+    ) : (
+      <Error404 />
+    )}
     </>
   );
 };

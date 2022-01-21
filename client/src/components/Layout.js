@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Navbar from "./Navbar";
-import Animals from "./Animals";
+import Navbar from "./Navbar/Navbar";
+import Animals from "./Animals/Animals";
 import Hero from "./Hero";
 import SignUpForm from "./SignUpForm";
 import LoginForm from "./LoginForm";
-import AddAnimalForm from "./AddAnimalForm";
-import Animal from "./Animal";
+import AddAnimalForm from "./Animals/AddAnimalForm";
+import Animal from "./Animals/Animal";
 import Footer from "./Footer";
-import MobileNavbar from "./MobileNavbar";
+import MobileNavbar from "./Navbar/MobileNavbar";
 import UserContext from "../utils/auth-context";
 import Error404 from "./Error404";
 import Cookie from "universal-cookie"
@@ -16,13 +16,15 @@ import Cookie from "universal-cookie"
 const cookies = new Cookie();
 
 const Layout = () => {
-  const [token, setToken] = useState(false);
+  const [token, setToken] = useState({
+    token: false
+  });
 
   useEffect(() => {
     const checkLoggedIn = async () => {
       let jwt = cookies.get('jwt')
-      if (!jwt || jwt === null || jwt === undefined || jwt==="") {
-        return setToken(false)
+      if (!jwt) {
+        setToken(false)
       } else {
         setToken(true);
       }

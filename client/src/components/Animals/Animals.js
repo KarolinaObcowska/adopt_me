@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Spinner from "./Spinner";
-import Golden from "../images/golden.jpg";
+import Spinner from "../Spinner";
+import Golden from "../../images/golden.jpg";
 import { Link } from "react-router-dom";
 
 const Animals = () => {

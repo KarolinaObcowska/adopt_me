@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
-import Logo from "../images/logo.svg";
+import Logo from "../../images/logo.svg";
 import { Link } from "react-router-dom";
-import PublicRoute from "./PublicRoute";
-import PrivateRoute from "./PrivateRoute";
-import UserContext from "../utils/auth-context";
+import PublicRoute from "../Routes/PublicRoute";
+import PrivateRoute from "../Routes/PrivateRoute";
+import UserContext from "../../utils/auth-context";
 
 const Navbar = () => {
-  const { token } = useContext(UserContext);
+  const {token} = useContext(UserContext);
   const ref = useRef();
 
   const [isOpen, setNavbarOpen] = useState();
@@ -66,7 +66,7 @@ const Navbar = () => {
                 : "hidden"
             }
           >
-            {token !== false ? (
+            {token === true ?  (
               <PrivateRoute setNavbarOpen={setNavbarOpen} isOpen={isOpen} />
             ) : (
               <PublicRoute setNavbarOpen={setNavbarOpen} isOpen={isOpen} />
