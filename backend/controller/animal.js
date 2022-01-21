@@ -1,10 +1,11 @@
 import { Animal } from '../model/animal.js'
 import { ErrorHandler } from '../middleware/error.js'
 
+
 export async function createAnimal(req, res, next) {
   try {
     const { type, breed, name, age, description } = req.body
-    if (!type || !breed || !name || !age || !description) {
+    if (!(type && breed && name && age && description)) {
       throw new ErrorHandler(400, 'Missing required fields')
     }
     const animal = new Animal({
@@ -15,11 +16,20 @@ export async function createAnimal(req, res, next) {
       description,
     })
     await animal.save()
-    res.status(201).json({ msg: 'Animal created' })
+    res.status(201).json({ msg: 'Animal created', animal})
   } catch (error) {
     next(error)
   }
 }
+// export async function uploadImages(req, res, next) {
+//   try {
+//     uploadFile.array('images');
+//     const images = req.files;
+//     res.send(images)
+//   } catch (error) {
+//     next()
+//   }
+
 
 export async function getAllAnimals(req, res, next) {
   try {
