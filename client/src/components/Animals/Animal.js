@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Spinner from "../Spinner";
 import Golden from "../../images/golden.jpg";
 import g1 from "../../images/golden1.jpg";
@@ -58,10 +58,15 @@ const Animal = () => {
               <div className="my-6 hidden md:flex justify-center items-center">
                 <button
                   onClick={handleAdoptAnimal}
-                  className="bg-gradient-to-r from-yellow-400 text-center to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 p-2 w-1/2 rounded-md text-white uppercase"
+                  className="bg-gradient-to-r m-2 from-yellow-400 text-center to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 p-2 w-1/2 rounded-md text-white uppercase"
                 >
-                  Adopt {animal.name}
+                  Adopt
                 </button>
+                <Link to={`/animals/${id}/update`}
+                                  className="bg-gradient-to-r m-2 from-yellow-400 text-center to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 p-2 w-1/2 rounded-md text-white uppercase"
+                                  >
+                  Update
+                </Link>
               </div>
             </div>
             <div className="container mx-auto md:mt-0 mt-6 px-6">
@@ -117,10 +122,15 @@ const Animal = () => {
             <div className="m-6 md:hidden flex justify-center items-center">
               <button
                 onClick={handleAdoptAnimal}
-                className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 p-2 w-full rounded-md text-white uppercase"
+                className="bg-gradient-to-r from-yellow-400 m-2 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 p-2 w-full rounded-md text-white uppercase"
               >
                 Adopt {animal.name}
               </button>
+              <Link to={`/animals/${id}/update`}
+                className="bg-gradient-to-r from-yellow-400 m-2 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 p-2 w-full rounded-md text-white uppercase"
+                >
+                  Update
+                </Link>
             </div>
           </div>
         </div>

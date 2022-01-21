@@ -16,7 +16,10 @@ const __dirname = path.resolve();
 const upload = multer({ dest: './public/images' })
 
   app.post("/animal/:id/upload", upload.array("files", 5), (req, res, next) => {
+    const animalId = req.params.id;
+    
     try {
+      console.log(req.files)
       res.status(200).json({msg: "File uploaded successfully", })
     } catch (error) {
       next(err);
