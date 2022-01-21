@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import UserContext from "../utils/auth-context";
 import { useNavigate } from "react-router-dom";
 import Modal from "./Modal";
 
 const AddAnimalForm = () => {
-  const history = useNavigate();
+  const { token } = useContext(UserContext);
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [message, setMessage] = useState();
 
@@ -14,6 +16,7 @@ const AddAnimalForm = () => {
     age: "",
     description: "",
   });
+  
   const handleChange = (event) => {
     const { name, value } = event.target;
     setAnimal({
@@ -39,15 +42,16 @@ const AddAnimalForm = () => {
       setShowModal(true);
       setMessage(data.msg);
     } else {
-      history.push("/animals");
+      navigate("/animals");
     }
   }
   return (
     <>
-      {showModal ? (
+    {token && (
+      showModal ? (
         <Modal show={true} msg={message} />
       ) : (
-        <div className="fixed top-16 sm:top-30 p-6 mt-3 w-screen bg-white-100 flex items-center justify-center h-screen">
+<div className="fixed top-16 sm:top-30 p-6 mt-3 w-screen bg-white-100 flex items-center justify-center h-screen">
           <form className="w-full h-full max-w-lg" onSubmit={handleAddAnimal}>
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-1/2 px-3">
@@ -168,7 +172,11 @@ const AddAnimalForm = () => {
             </div>
           </form>
         </div>
+        ) 
       )}
+      {
+        navigate('/auth/login')
+      }
     </>
   );
 };

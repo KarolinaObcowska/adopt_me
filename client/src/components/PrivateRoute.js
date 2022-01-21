@@ -4,15 +4,21 @@ import { useNavigate } from "react-router";
 import UserContext from "../utils/auth-context";
 
 const PrivateRoute = ({ setNavbarOpen, isOpen }) => {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const { setToken } = useContext(UserContext);
 
-  function handleLogout(e) {
+  async function handleLogout (e) {
     e.preventDefault();
+    const res = await fetch('http://localhost:8080/auth/logout', {
+      method: 'POST',
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
     setNavbarOpen(!isOpen);
-    localStorage.setItem("auth-token", undefined);
-    setToken({ token: undefined });
-    history.push("/");
+    setToken(false);
+    navigate("/");
   }
   return (
     <div>

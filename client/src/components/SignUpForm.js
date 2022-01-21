@@ -4,7 +4,7 @@ import Modal from "./Modal";
 import UserContext from "../utils/auth-context";
 
 const SignUpForm = () => {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     firstname: "",
     lastname: "",
@@ -28,6 +28,7 @@ const SignUpForm = () => {
     const { firstname, lastname, email, password } = user;
     const res = await fetch("http://localhost:8080/auth/signup", {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -41,12 +42,11 @@ const SignUpForm = () => {
       setShowModal(true);
       setMessage(data.msg);
       setTimeout(() => {
-        history.push("/auth/login");
+        navigate("/auth/login");
       }, 3000);
     } else {
       setToken({ token: data.token });
-      localStorage.setItem("auth-token", data.token);
-      history.push("/animals");
+      navigate("/animals");
     }
   }
   return (

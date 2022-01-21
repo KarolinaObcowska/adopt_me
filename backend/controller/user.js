@@ -20,6 +20,7 @@ export async function sendToken (user, statusCode, req, res) {
         Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
       ),
       httpOnly: true,
+      sameSite: 'strict',
       secure: req.secure || req.headers['x-forwarded-proto'] === 'https'
     })
     .status(statusCode)
@@ -94,8 +95,8 @@ export async function login(req, res, next) {
 }
  
 export async function logout(req, res) {
-  res.cookie('jwt', 'loggedout', {
-    expires: new Date(Date.now() + 10000),
+  res.cookie('jwt', null, {
+    expires: new Date(Date.now() + 10),
     httponly: true
   })
   res.status(200).json({ status: 'success' });

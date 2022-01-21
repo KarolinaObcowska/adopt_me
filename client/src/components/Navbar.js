@@ -66,7 +66,7 @@ const Navbar = () => {
                 : "hidden"
             }
           >
-            {token.token ? (
+            {token !== false ? (
               <PrivateRoute setNavbarOpen={setNavbarOpen} isOpen={isOpen} />
             ) : (
               <PublicRoute setNavbarOpen={setNavbarOpen} isOpen={isOpen} />

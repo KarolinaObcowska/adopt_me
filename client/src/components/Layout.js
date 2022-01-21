@@ -16,20 +16,15 @@ import Cookie from "universal-cookie"
 const cookies = new Cookie();
 
 const Layout = () => {
-  const [token, setToken] = useState({
-    token: undefined,
-  });
+  const [token, setToken] = useState(false);
 
   useEffect(() => {
     const checkLoggedIn = async () => {
-      let token = cookies.get('jwt')
-      if (token === null || token === undefined) {
-        cookies.set("jwt", "");
-        token = "";
+      let jwt = cookies.get('jwt')
+      if (!jwt || jwt === null || jwt === undefined || jwt==="") {
+        return setToken(false)
       } else {
-        setToken({
-          token,
-        });
+        setToken(true);
       }
     };
     checkLoggedIn();

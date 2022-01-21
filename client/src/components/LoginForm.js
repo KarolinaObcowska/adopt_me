@@ -4,7 +4,7 @@ import Modal from "./Modal";
 import UserContext from "../utils/auth-context";
 
 const LoginForm = () => {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [message, setMessage] = useState();
   const [user, setUser] = useState({
@@ -38,7 +38,7 @@ const LoginForm = () => {
       setShowModal(true);
       setMessage(data.msg);
       setTimeout(() => {
-        history.push("/auth/signup");
+        navigate("/auth/signup");
       }, 3000);
     } else if (data.statusCode === 422) {
       setShowModal(true);
@@ -46,7 +46,7 @@ const LoginForm = () => {
     } else {
       localStorage.setItem("auth-token", data.token);
       setToken({ token: data.token });
-      history.push("/animals"); 
+      navigate("/animals"); 
     }
   }
   return (
