@@ -18,21 +18,21 @@ const Animal = () => {
       const response = await fetch(`http://localhost:8080/animal/${id}`);
       const data = await response.json();
       setAnimal(data.animal);
+      console.log(data);
     }
     fetchAnimalById();
   }, [id]);
 
   async function handleAdoptAnimal(event) {
-    event.preventDefault()
+    event.preventDefault();
     await fetch(`http://localhost:8080/animal/${id}`, {
-    method: "DELETE",
+      method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-      }
+      },
     });
-    window.location.href = 'http://localhost:3000/animals'
-    window.open('https://www.schroniskowroclaw.pl/',
-    '_blank')
+    window.location.href = "http://localhost:3000/animals";
+    window.open("https://www.schroniskowroclaw.pl/", "_blank");
   }
   return (
     <>

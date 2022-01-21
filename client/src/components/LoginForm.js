@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 import Modal from "./Modal";
-import UserContext from '../utils/auth-context'
+import UserContext from "../utils/auth-context";
 
 const LoginForm = () => {
-  const history = useHistory();
+  const history = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [message, setMessage] = useState();
   const [user, setUser] = useState({
@@ -12,7 +12,8 @@ const LoginForm = () => {
     password: "",
   });
 
-  const {setToken} = useContext(UserContext)
+  const { setToken } = useContext(UserContext);
+  
   const handleChange = (event) => {
     const { name, value } = event.target;
     setUser({
@@ -25,25 +26,27 @@ const LoginForm = () => {
     const { email, password } = user;
     const res = await fetch("http://localhost:8080/auth/login", {
       method: "POST",
+      credentials: 'include',
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(user),
     });
+    console.log(res)
     const data = await res.json();
-    if (data.statusCode === 401 ) {
+    if (data.statusCode === 401) {
       setShowModal(true);
       setMessage(data.msg);
       setTimeout(() => {
         history.push("/auth/signup");
-      }, 3000)
-    } else if(data.statusCode === 422) {
+      }, 3000);
+    } else if (data.statusCode === 422) {
       setShowModal(true);
       setMessage(data.msg);
     } else {
-      localStorage.setItem('auth-token', data.token)
-      setToken({token: data.token})
-      history.push("/animals");
+      localStorage.setItem("auth-token", data.token);
+      setToken({ token: data.token });
+      history.push("/animals"); 
     }
   }
   return (

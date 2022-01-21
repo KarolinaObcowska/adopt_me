@@ -1,4 +1,4 @@
-import { Router } from 'express'
+import Router from 'express'
 import {
   createAnimal,
   getAllAnimals,
@@ -8,15 +8,15 @@ import {
 } from '../controller/animal.js'
 import { isAuth } from '../middleware/isAuth.js'
 
+
 const router = Router()
 
-router.route('/').get(getAllAnimals).post(createAnimal)
+router.get('/', getAllAnimals)
+router.post('/', isAuth, createAnimal)
 
-router
-  .route('/:id')
-  .get(getAnimalById)
-  .delete(deleteAnimal)
-  .put(isAuth, updateAnimal)
+router.get('/:id', getAnimalById)
+router.delete('/:id', deleteAnimal)
+router.put("/", isAuth, updateAnimal)
 
 router
 // .route('/:id/images')

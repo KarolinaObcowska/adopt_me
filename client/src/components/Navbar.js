@@ -3,10 +3,10 @@ import Logo from "../images/logo.svg";
 import { Link } from "react-router-dom";
 import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
-import UserContext from '../utils/auth-context'
+import UserContext from "../utils/auth-context";
 
 const Navbar = () => {
-  const {token} = useContext(UserContext)
+  const { token } = useContext(UserContext);
   const ref = useRef();
 
   const [isOpen, setNavbarOpen] = useState();
@@ -62,7 +62,7 @@ const Navbar = () => {
           <div
             className={
               isOpen
-                ? "flex justify-center flex-row p-3 absolute top-20 right-0 bg-green-800  w-screen"
+                ? "flex justify-center p-3 flex-column absolute top-20 right-0 bg-green-800  w-1/3 h-screen"
                 : "hidden"
             }
           >

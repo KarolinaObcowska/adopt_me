@@ -1,25 +1,23 @@
 import jwt from 'jsonwebtoken'
+import { User } from '../model/user.js';
+import { ErrorHandler } from './error.js'
+import 'dotenv/config'
 
-export function isAuth(req, res, next) {
-  const header = req.get('Authorization')
-  if (!header) {
-    const error = new Error('Not authenticated.')
-    error.statusCode = 401
-    throw error
+export async function isAuth(req, res, next) {
+  let token;
+  if (req.cookies.jwt) {
+    token = req.cookies.jwt
   }
-  const token = header.split(' ')[1]
-  let decodedToken
-  try {
-    decodedToken = jwt.verify(token, 'secretkey')
-  } catch (err) {
-    err.statusCode = 500
-    throw err
+  if (!token) {
+    throw new ErrorHandler(401, 'You are not logged in!')
   }
-  if (!decodedToken) {
-    const error = new Error('Not authenticated.')
-    error.statusCode = 401
-    throw error
+  let decodedToken = await jwt.verify(token, process.env.JWT_SECRET);
+  const currentLoggedUser = await User.findById(decodedToken.id);
+  if (!currentLoggedUser) {
+    throw new ErrorHandler(401, 'The user belonging to this token does not loger exist')
   }
-  req.userId = decodedToken.userId
-  next()
+  req.user = currentLoggedUser;
+  req.userId = currentLoggedUser._id;
+
+  next();
 }

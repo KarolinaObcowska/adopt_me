@@ -1,5 +1,4 @@
 import Layout from "./components/Layout";
-import { useAuth } from './utils/auth-context'
 
 function App() {
   return (
