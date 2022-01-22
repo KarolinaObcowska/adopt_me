@@ -8,7 +8,7 @@ export class ErrorHandler extends Error {
 
 export const handleError = (error, res) => {
   const { statusCode, msg } = error
-  res.json({
+  res.send({
     statusCode,
     msg,
   })

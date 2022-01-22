@@ -1,11 +1,8 @@
 import AnimalForm from "../AnimalForm";
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Golden from "../../../images/golden.jpg";
-
-import UserContext from "../../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import Modal from "../../Modal";
 import Error404 from "../../Error404"
 
 const UpdateAnimal = () => {

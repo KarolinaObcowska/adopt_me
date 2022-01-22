@@ -1,12 +1,15 @@
-import { useState, createContext, useContext, useEffect } from 'react';
+import { useState, createContext, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookie from "universal-cookie"
+import { ModalContext } from "../context/modalContext";
 
 const AuthContext = createContext(null);
 
 const cookies = new Cookie();
 
 export const AuthProvider = ({children}) => {
+    const { handleModal } = useContext(ModalContext);
+
     const [authenticated, setAuthenticated] = useState(false);
     const navigate = useNavigate();
 
@@ -29,9 +32,11 @@ export const AuthProvider = ({children}) => {
             },
             body: JSON.stringify(user),
         });
-        const data = await res.json();
-        if (data.user === null) {
-            console.log(data)
+        console.log(res)
+        // const data = await res.json();
+        // console.log(data)
+        if (res) {
+            handleModal(res.msg)
           } else {
             setAuthenticated(true)
             navigate('/animals')

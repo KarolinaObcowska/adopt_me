@@ -27,9 +27,7 @@ export async function sendToken (user, statusCode, req, res) {
     .json({
     status: 'success',
     token: token,
-    data: {
-      user
-    }
+    user
   });
 };
 
