@@ -3,15 +3,13 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Golden from "../../../images/golden.jpg";
 import { useNavigate } from "react-router-dom";
-import Error404 from "../../Error404"
 
 const UpdateAnimal = () => {
   const { id } = useParams()
   const navigate = useNavigate();
-  const [showModal, setShowModal] = useState(false);
-  const [message, setMessage] = useState();
-  const [item, setItem] = useState();
-  const [animal, setAnimal] = useState({
+  const [item, setItem] = useState({});
+  const [images, setImages] = useState([])
+  const [updateAnimal, setUpdateAnimal] = useState({
     type: "",
     breed: "",
     name: "",
@@ -19,13 +17,14 @@ const UpdateAnimal = () => {
     description: "",
   });
   
-  const handleChange = (event) => {
+  function handleChange(event) {
     const { name, value } = event.target;
-    setAnimal({
-      ...animal,
+    setUpdateAnimal({
+      ...updateAnimal,
       [name]: value,
     });
   };
+
   useEffect(() => {
     async function fetchAnimalById() {
       const response = await fetch(`http://localhost:8080/animal/${id}`);
@@ -35,21 +34,43 @@ const UpdateAnimal = () => {
     fetchAnimalById();
   }, [id]);
 
+  function onImageChange(event) {
+    setImages([...event.target.files])
+  }
+
+  async function handleUploadImages(event) {
+    event.preventDefault();
+    const res = await fetch(`"/animal/${id}/upload"`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "multipart/form-data"
+      },
+      body: images
+    })
+    const data = await res.json();
+    if (res.status === 200) {
+      navigate(`/animals/${id}`)
+    } else {
+      console.log('fail')
+    }
+  }
+
+
   async function handleSubmit(event) {
     event.preventDefault();
-    const { type, breed, name, age, description } = animal;    
+    const { type, breed, name, age, description } = updateAnimal;    
     const res = await fetch(`http://localhost:8080/animal/${id}`, {
       method: "PUT",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(animal),
+      body: JSON.stringify(updateAnimal),
     });
     const data =  await res.json();
-    if (res.status !== 201) {
-      setShowModal(true);
-      setMessage(data.msg);
+    if (res.status !== 200) {
+      console.log("fails")
     } else {
       navigate("/animals");
     }
@@ -66,7 +87,7 @@ const UpdateAnimal = () => {
               <span className="inline ml-6 text-5xl font-bold text-green-700">
                 {item.name}
               </span>
-            <form className="w-full h-full max-w-lg mt-6">
+            <form className="w-full h-full max-w-lg mt-6" onSubmit={handleUploadImages}>
             <div className="lex flex-wrap -mx-3 mb-1">
               <div className="w-full px-3">
                 <label
@@ -82,8 +103,7 @@ const UpdateAnimal = () => {
                   type="file"
                   name="files"
                   aria-label="upload animal's images"
-                  // value={images}
-                  // onChange={}
+                  onChange={onImageChange}
                 />
               </div>
             </div>
@@ -95,7 +115,7 @@ const UpdateAnimal = () => {
               </button>
             </form>
             </div>
-          <AnimalForm buttonText='Update' placeholders={item} handleChange={handleChange} handleSubmit={handleSubmit} animal={animal} />
+          <AnimalForm buttonText='Update' placeholders={item} handleChange={handleChange} handleSubmit={handleSubmit} animal={updateAnimal} />
           
         </div>
   );

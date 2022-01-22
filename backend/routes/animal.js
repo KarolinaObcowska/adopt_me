@@ -17,7 +17,7 @@ router.post('/', isAuth, createAnimal)
 router.get('/:id', getAnimalById)
 // router.post('/:id/uploadImages', isAuth, uploadImages)
 router.delete('/:id', deleteAnimal)
-router.put("/", isAuth, updateAnimal)
+router.put("/:id", isAuth, updateAnimal)
 
 router
 // .route('/:id/images')

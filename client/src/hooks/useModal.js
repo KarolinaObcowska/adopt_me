@@ -8,7 +8,6 @@ const useModal = () => {
         setVisible(true);
         if (content) {
             setContent(content);
-
         }
     }
 

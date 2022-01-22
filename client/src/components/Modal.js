@@ -1,26 +1,14 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { createPortal } from 'react-dom';
 import { ModalContext } from '../context/modalContext';
 
 const Modal = () => {
 
-const modalRoot = document.querySelector("#modal")
-const el = document.createElement("div"); 
-
-useEffect(() => {
-  modalRoot.appendChild(el);
-  return () => {
-    modalRoot.removeChild(el)
-  }
-}, [el])
-
-
-
-
 const { content, closeModal, visible} = useContext(ModalContext);
 if(visible) {
   console.log(content)
-  return createPortal(<><div
+  return createPortal(
+  <><div
     className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
   >
     <div className="relative w-1/2 my-6 mx-auto max-w-3xl">

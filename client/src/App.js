@@ -7,10 +7,8 @@ function App() {
     <div className="App">
       <ModalProvider>
       <AuthProvider>
-
         <Layout />
         </AuthProvider>
-
       </ModalProvider>
     </div>
   );
