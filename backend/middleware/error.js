@@ -6,10 +6,3 @@ export class ErrorHandler extends Error {
   }
 }
 
-export const handleError = (error, res) => {
-  const { statusCode, msg } = error
-  res.send({
-    statusCode,
-    msg,
-  })
-}

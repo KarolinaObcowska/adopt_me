@@ -1,13 +1,10 @@
 import express from 'express'
 import cors from 'cors'
 import multer from 'multer';
-import fs from "fs";
-import path, { dirname } from "path"
-import { fileURLToPath } from "url";
+import path from "path"
 import cookieParser from 'cookie-parser';
 import userRouter from './routes/user.js'
 import animalRouter from './routes/animal.js'
-import { handleError } from './middleware/error.js'
 
 export const app = express()
 
@@ -17,9 +14,7 @@ const upload = multer({ dest: './public/images' })
 
   app.post("/animal/:id/upload", upload.array("files", 5), (req, res, next) => {
     const animalId = req.params.id;
-    
     try {
-      console.log(req.files)
       res.status(200).json({msg: "File uploaded successfully", })
     } catch (error) {
       next(err);
@@ -32,9 +27,6 @@ app
   .use(express.urlencoded({extended: true}))
   .use(express.json())
   .use(cookieParser())
-  .use((error, req, res, next) => {
-    handleError(error, res)
-  })
   .use(function(req, res, next) {
     res.header('Content-Type', 'application/json;charset=UTF-8')
     res.header('Access-Control-Allow-Credentials', true)
@@ -51,8 +43,13 @@ app
   }))
   .use('/auth', userRouter)
   .use('/animal', animalRouter)
-
-
+  .use((err, req, res, next) => {
+    console.log(err)
+    res.json({
+      status: err.statusCode,
+      message: err.msg,
+  })
+})
 
 app.get('/', (req, res) => {
   res.send('API running')

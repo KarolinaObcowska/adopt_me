@@ -8,7 +8,7 @@ const AuthContext = createContext(null);
 const cookies = new Cookie();
 
 export const AuthProvider = ({children}) => {
-    const { handleModal } = useContext(ModalContext);
+    const { handleModal, setVisible, setContent } = useContext(ModalContext);
 
     const [authenticated, setAuthenticated] = useState(false);
     const navigate = useNavigate();
@@ -32,11 +32,11 @@ export const AuthProvider = ({children}) => {
             },
             body: JSON.stringify(user),
         });
-        console.log(res)
-        // const data = await res.json();
-        // console.log(data)
-        if (res) {
-            handleModal(res.msg)
+        const data = await res.json()
+        console.log(data)
+        if (!data.user) {
+            setVisible(true)
+            setContent(data.message)
           } else {
             setAuthenticated(true)
             navigate('/animals')
