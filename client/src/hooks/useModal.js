@@ -4,12 +4,18 @@ const useModal = () => {
     const [visible, setVisible] = useState(false)
     const [content, setContent] = useState("")
 
-    const handleModal = (content) => {
-        setVisible(visible => !visible);
-        setContent(content);
+    const handleModal = (content = false) => {
+        setVisible(true);
+        if (content) {
+            setContent(content);
+
+        }
     }
 
-    return {handleModal, content, setContent, visible, setVisible}
+    const closeModal = () => {
+        setVisible(false)
+    }
+    return {handleModal, content, visible, closeModal }
 }
 
 export default useModal;
