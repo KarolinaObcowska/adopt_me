@@ -1,6 +1,6 @@
-const AnimalForm = ({handleChange, handleSubmit, buttonText, animal}) => {
+const AnimalForm = ({handleChange, handleSubmit, buttonText, animal, placeholders}) => {
   return (
-          <form className="w-full h-full max-w-lg" onSubmit={handleSubmit}>
+          <form className="relative w-full h-full max-w-lg" onSubmit={handleSubmit}>
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-1/2 px-3">
                 <label
@@ -15,8 +15,9 @@ const AnimalForm = ({handleChange, handleSubmit, buttonText, animal}) => {
                   type="text"
                   name="type"
                   aria-label="animal type label"
-                  placeholder="Dog etc."
+                  placeholder={placeholders.type}
                   value={animal.type}
+
                   onChange={handleChange}
                 />
               </div>
@@ -32,6 +33,7 @@ const AnimalForm = ({handleChange, handleSubmit, buttonText, animal}) => {
                   id="breed"
                   name="breed"
                   type="text"
+                  placeholder={placeholders.breed}
                   aria-label="breed label"
                   value={animal.breed}
                   onChange={handleChange}
@@ -51,6 +53,7 @@ const AnimalForm = ({handleChange, handleSubmit, buttonText, animal}) => {
                   id="name"
                   name="name"
                   type="text"
+                  placeholder={placeholders.name}
                   aria-label="animal name label"
                   value={animal.name}
                   onChange={handleChange}
@@ -67,7 +70,8 @@ const AnimalForm = ({handleChange, handleSubmit, buttonText, animal}) => {
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none  focus:border-yellow-500"
                   id="age"
                   name="age"
-                  type="text"
+                  type="number"
+                  placeholder={placeholders.age}
                   aria-label="age label"
                   value={animal.age}
                   onChange={handleChange}
@@ -87,6 +91,7 @@ const AnimalForm = ({handleChange, handleSubmit, buttonText, animal}) => {
                   id="grid-password"
                   type="text"
                   name="description"
+                  placeholder={placeholders.description}
                   aria-label="describe label"
                   value={animal.description}
                   onChange={handleChange}

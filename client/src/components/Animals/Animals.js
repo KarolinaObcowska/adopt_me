@@ -19,7 +19,7 @@ const Animals = () => {
         <Spinner />
       ) : (
         <div
-          className="w-screen flex mt-28 px-6 justify-center items-center mb-20"
+          className="w-screen flex mt-10 px-6 justify-center items-center mb-20"
           aria-label="Animals for adopt"
         >
           <div className="flex flex-row justify-center items-center flex-wrap md:w-4/5 w-screen">

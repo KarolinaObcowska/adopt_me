@@ -1,20 +1,14 @@
-import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import Modal from "./Modal";
-import UserContext from "../utils/auth-context";
+import React, { useState } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 const SignUpForm = () => {
-  const navigate = useNavigate();
+  const {signup} = useAuth();
   const [user, setUser] = useState({
     firstname: "",
     lastname: "",
     email: "",
     password: "",
   });
-
-  const { setToken } = useContext(UserContext);
-  const [showModal, setShowModal] = useState(false);
-  const [message, setMessage] = useState("");
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -23,39 +17,35 @@ const SignUpForm = () => {
       [name]: value,
     });
   };
-  async function registerUser(event) {
-    event.preventDefault();
-    const { firstname, lastname, email, password } = user;
-    const res = await fetch("http://localhost:8080/auth/signup", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    });
-    const data = await res.json();
-    if (data.statusCode === 422) {
-      setShowModal(true);
-      setMessage(data.msg);
-    } else if (data.statusCode === 403) {
-      setShowModal(true);
-      setMessage(data.msg);
-      setTimeout(() => {
-        navigate("/auth/login");
-      }, 3000);
-    } else {
-      setToken(true);
-      navigate("/animals");
-    }
-  }
+  // async function registerUser(event) {
+  //   event.preventDefault();
+  //   const { firstname, lastname, email, password } = user;
+  //   const res = await fetch("http://localhost:8080/auth/signup", {
+  //     method: "POST",
+  //     credentials: "include",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(user),
+  //   });
+  //   const data = await res.json();
+  //   if (data.statusCode === 422) {
+  //     setShowModal(true);
+  //     setMessage(data.msg);
+  //   } else if (data.statusCode === 403) {
+  //     setShowModal(true);
+  //     setMessage(data.msg);
+  //     setTimeout(() => {
+  //       navigate("/auth/login");
+  //     }, 3000);
+  //   } else {
+  //     setToken(true);
+  //     navigate("/animals");
+  //   }
+  // }
   return (
-    <>
-      {showModal ? (
-        <Modal show={true} msg={message} />
-      ) : (
         <div className="fixed top-20 sm:top-36 p-6 mt-3 w-screen bg-white-100 flex justify-center h-screen">
-          <form className="w-full h-full max-w-lg" onSubmit={registerUser}>
+          <form className="w-full h-full max-w-lg" onSubmit={e => signup(e, user)}>
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-full px-3 mb-6 md:mb-4">
                 <label
@@ -141,8 +131,6 @@ const SignUpForm = () => {
             </div>
           </form>
         </div>
-      )}
-    </>
   );
 };
 

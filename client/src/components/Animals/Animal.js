@@ -39,7 +39,7 @@ const Animal = () => {
       {!animal ? (
         <Spinner />
       ) : (
-        <div className="w-screen flex mt-28  sm:px-24 justify-center">
+        <div className="w-screen flex mt-10  sm:px-24 justify-center">
           <div className="flex-1 mb-20 grid grid-cols-1 md:grid-cols-2 mx-6 sm:ml-0 sm:w-4/5 w-screen">
             <div className="px-6">
               <img

@@ -1,15 +1,15 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Logo from "../../images/logo.svg";
 import { Link } from "react-router-dom";
 import PublicRoute from "../Routes/PublicRoute";
 import PrivateRoute from "../Routes/PrivateRoute";
-import UserContext from "../../utils/auth-context";
+import { useAuth } from "../../hooks/useAuth";
 
 const Navbar = () => {
-  const {token} = useContext(UserContext);
+  const { authenticated } = useAuth();
   const ref = useRef();
-
   const [isOpen, setNavbarOpen] = useState();
+  console.log(authenticated)
 
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
@@ -26,7 +26,7 @@ const Navbar = () => {
   return (
     <nav
       ref={ref}
-      className="w-full fixed flex bg-green-800  h-14 p-4 sm:p-6 sm:h-20 justify-center z-50"
+      className="w-full sticky flex bg-green-800  h-14 p-4 sm:p-6 sm:h-20 justify-center z-50"
     >
       <div className="h-2 sm:h-10 flex items-center justify-between flex-wrap md:w-4/5 w-screen">
         <Link
@@ -66,7 +66,7 @@ const Navbar = () => {
                 : "hidden"
             }
           >
-            {token === true ?  (
+            {authenticated === true ?  (
               <PrivateRoute setNavbarOpen={setNavbarOpen} isOpen={isOpen} />
             ) : (
               <PublicRoute setNavbarOpen={setNavbarOpen} isOpen={isOpen} />

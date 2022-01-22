@@ -1,18 +1,13 @@
-import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router";
-import Modal from "./Modal";
-import UserContext from "../utils/auth-context";
+import React, { useState } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 const LoginForm = () => {
-  const navigate = useNavigate();
-  const [showModal, setShowModal] = useState(false);
-  const [message, setMessage] = useState();
+  const { login } = useAuth();
+
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
-
-  const { setToken } = useContext(UserContext);
   
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -21,41 +16,10 @@ const LoginForm = () => {
       [name]: value,
     });
   };
-  async function loginUser(event) {
-    event.preventDefault();
-    const { email, password } = user;
-    const res = await fetch("http://localhost:8080/auth/login", {
-      method: "POST",
-      credentials: 'include',
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    });
-    console.log(res)
-    const data = await res.json();
-    if (data.statusCode === 401) {
-      setShowModal(true);
-      setMessage(data.msg);
-      setTimeout(() => {
-        navigate("/auth/signup");
-      }, 3000);
-    } else if (data.statusCode === 422) {
-      setShowModal(true);
-      setMessage(data.msg);
-    } else {
-      localStorage.setItem("auth-token", data.token);
-      setToken(true);
-      navigate("/animals"); 
-    }
-  }
+  
   return (
-    <>
-      {showModal ? (
-        <Modal show={true} msg={message} />
-      ) : (
         <div className="fixed top-20 sm:top-36 p-6 mt-3 w-screen bg-white-100 flex items-center justify-center h-screen">
-          <form className="w-full h-full max-w-lg" onSubmit={loginUser}>
+          <form className="w-full h-full max-w-lg" onSubmit={e => login(e, user)}>
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-full px-3">
                 <label
@@ -104,8 +68,6 @@ const LoginForm = () => {
             </div>
           </form>
         </div>
-      )}
-    </>
   );
 };
 
