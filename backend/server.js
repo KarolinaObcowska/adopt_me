@@ -1,18 +1,18 @@
 import express from 'express'
 import cors from 'cors'
-import multer from 'multer';
 import path from "path"
 import cookieParser from 'cookie-parser';
 import userRouter from './routes/user.js'
 import animalRouter from './routes/animal.js'
+import 'dotenv/config'
+
 
 export const app = express()
 
 const __dirname = path.resolve();
 
 app
-  .use("/images", express.static(path.join(__dirname, "public/images")))
-  
+  .use("/public", express.static('public'))
   .use(express.json())
   .use(express.urlencoded({extended: true}))
   .use(express.json())

@@ -1,12 +1,9 @@
-import pkg from 'mongoose'
-const { connect } = pkg
+import mongoose from 'mongoose'
+import 'dotenv/config'
 
-const db =
-  'mongodb+srv://Karolina:XOIEwdwmXDiWhxmh@animals.dxun5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-
-export const connectDB = async () => {
+export async function connectDB() {
   try {
-    await connect(db, {
+    await mongoose.connect(process.env.MONGODB_URL, {
       useUnifiedTopology: true,
       useNewUrlParser: true,
     })
@@ -16,3 +13,4 @@ export const connectDB = async () => {
     process.exit(1)
   }
 }
+

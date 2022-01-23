@@ -1,29 +1,49 @@
 import { Animal } from '../model/animal.js'
 import { ErrorHandler } from '../middleware/error.js'
 import multer from 'multer';
+import fs from "fs";
+import 'dotenv/config'
 
-const multerStorage = multer.memoryStorage();
+const __dirname = './public/images'
 
-const multerFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith('image')) {
-    cb (null, true);
-  } else {
-    cb(new ErrorHandler(400, 'Not an image! Please uploadd only images.'))
-  }
-};
-
-const upload = multer({
-  storage: multerStorage,
-  fileFilter: multerFilter
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, __dirname);
+  },
+  filename: function (req, file, cb) {
+    const fileName = file.originalname.toLocaleLowerCase().split(' ').join('-');
+    cb(null, fileName);
+  },
 });
 
+const fileFilter = (req, file, cb) => {
+  const allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+  if(allowedFileTypes.includes(file.mimetype)) {
+      cb(null, true);
+  } else {
+      cb(null, false);
+  }
+}
+
+export const upload = multer({storage, fileFilter });
+
 export async function uploadImages(req, res, next) {
+  console.log(req.files)
+  const reqFiles = [];
+  const url = req.protocol + '://' + req.get('host')
   try {
-    upload.array('images');
-    const images = req.files;
-    res.send(images)
+    for (let i =0; i< req.files.length; i++) {
+      reqFiles.push(url + '/public/images/' + req.files[i].filename)
+    }
+  
+    const animalId = req.params.id;
+    const animal = await Animal.findById({ _id: animalId });
+    console.log( animal)
+    animal.images = reqFiles;
+    await animal.save()
+    res.send(reqFiles)
   } catch (error) {
-    next()
+    next(error)
   }
 };
 

@@ -27,7 +27,7 @@ const Animals = () => {
               <div className="rounded-lg flex-1" key={animal._id}>
                 <div className="bg-gray-200 rounded-lg mx-6 mb-6">
                   <img
-                    src={animal.avatar}
+                    src={animal.images[0]}
                     alt="golden retriver"
                     className="w-full h-48 transition object-cover duration-300 rounded-t-lg sm:h-56 opacity-80 hover:opacity-100"
                   />

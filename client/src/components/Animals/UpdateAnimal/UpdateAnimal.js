@@ -8,7 +8,7 @@ const UpdateAnimal = () => {
   const { id } = useParams()
   const navigate = useNavigate();
   const [item, setItem] = useState({});
-  const [files, setFiles] = useState([])
+  const [images, setImages] = useState([])
   const [updateAnimal, setUpdateAnimal] = useState({
     type: "",
     breed: "",
@@ -36,21 +36,24 @@ const UpdateAnimal = () => {
   };
 
   function handleImageChange(event) {
-    const images = [...files];
-    images.push(...event.target.files);
-    setFiles(images)
+    const files = [...images];
+    files.push(...event.target.files);
+    setImages(files)
   }
 
   async function handleUploadImages(event) {
     event.preventDefault();
-    const fileData = new FormData();
-    files.forEach((file) => fileData.append('files', file))
+    const formData = new FormData();
+    for (let i = 0 ; i < images.length ; i++) {
+      formData.append("images", images[i]);
+  }
     const res = await fetch(`/animal/${id}/upload`, {
       method: "POST",
-      credentials: "include",
-      body: fileData
+      body: formData
     })
-    console.log(files)
+    for (var key of formData.entries()) {
+      console.log(key[0] + ', ' + key[1]);
+  }
     if (res.status === 200) {
       navigate(`/animals/${id}`)
     } else {
@@ -88,7 +91,7 @@ const UpdateAnimal = () => {
               <span className="inline ml-6 text-5xl font-bold text-green-700">
                 {item.name}
               </span>
-            <form className="w-full h-full max-w-lg mt-6" onSubmit={handleUploadImages}>
+            <form className="w-full h-full max-w-lg mt-6" onSubmit={handleUploadImages} encType="multipart/form-data">
             <div className="lex flex-wrap -mx-3 mb-1">
               <div className="w-full px-3">
                 <label
@@ -98,13 +101,14 @@ const UpdateAnimal = () => {
                   Images (max. 10)
                 </label>
                 <input
-                multiple
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none  focus:border-yellow-500"
                   id="grid-password"
                   type="file"
                   name="images"
                   aria-label="upload animal's images"
                   onChange={handleImageChange}
+                  placeholder='Choose Images'
+                  multiple
                 />
               </div>
             </div>

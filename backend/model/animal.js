@@ -19,14 +19,13 @@ const animalSchema = new mongoose.Schema({
     type: String,
     required: true,
     maxlength: [300, 'A animal description must be equal or shorten than 300 characters.'],
-    minlength: [10, 'A animal description must be equal or longer than 10 characters.']
   },
   breed: {
     type: String,
     trim: true,
     required: true,
-    maxlength: [5, 'A animal breed must be equal or shorten than 5 characters.'],
-    minlength: [15, 'A animal breed must be equal or longer than 15 characters.']
+    minlength: [5, 'A animal breed must be equal or shorten than 5 characters.'],
+    maxlength: [15, 'A animal breed must be equal or longer than 15 characters.']
   },
   age: {
     type: Number,
@@ -35,9 +34,12 @@ const animalSchema = new mongoose.Schema({
     min: [0.1, 'A animal age must be above 0.'],
     max: [25, 'A animal age must be below 25 years.']
   },
-  images: [String],
+  images: {
+    type: Array
+  },
   avatar: {
-    type: Buffer
+    type: Buffer,
+    contentType: String
   }
 })
 
