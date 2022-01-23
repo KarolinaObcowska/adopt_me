@@ -1,5 +1,31 @@
 import { Animal } from '../model/animal.js'
 import { ErrorHandler } from '../middleware/error.js'
+import multer from 'multer';
+
+const multerStorage = multer.memoryStorage();
+
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image')) {
+    cb (null, true);
+  } else {
+    cb(new ErrorHandler(400, 'Not an image! Please uploadd only images.'))
+  }
+};
+
+const upload = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter
+});
+
+export async function uploadImages(req, res, next) {
+  try {
+    upload.array('images');
+    const images = req.files;
+    res.send(images)
+  } catch (error) {
+    next()
+  }
+};
 
 
 export async function createAnimal(req, res, next) {
@@ -13,7 +39,7 @@ export async function createAnimal(req, res, next) {
       breed,
       name,
       age,
-      description,
+      description
     })
     await animal.save()
     res.status(201).json({ msg: 'Animal created', animal})
@@ -21,14 +47,6 @@ export async function createAnimal(req, res, next) {
     next(error)
   }
 }
-// export async function uploadImages(req, res, next) {
-//   try {
-//     uploadFile.array('images');
-//     const images = req.files;
-//     res.send(images)
-//   } catch (error) {
-//     next()
-//   }
 
 
 export async function getAllAnimals(req, res, next) {

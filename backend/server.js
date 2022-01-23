@@ -10,19 +10,9 @@ export const app = express()
 
 const __dirname = path.resolve();
 
-const upload = multer({ dest: './public/images' })
-
-  app.post("/animal/:id/upload", upload.array("files", 5), (req, res, next) => {
-    const animalId = req.params.id;
-    try {
-      res.status(200).json({msg: "File uploaded successfully", })
-    } catch (error) {
-      next(err);
-    }
-  })
-
 app
   .use("/images", express.static(path.join(__dirname, "public/images")))
+  
   .use(express.json())
   .use(express.urlencoded({extended: true}))
   .use(express.json())

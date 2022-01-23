@@ -8,7 +8,7 @@ const UpdateAnimal = () => {
   const { id } = useParams()
   const navigate = useNavigate();
   const [item, setItem] = useState({});
-  const [images, setImages] = useState([])
+  const [files, setFiles] = useState([])
   const [updateAnimal, setUpdateAnimal] = useState({
     type: "",
     breed: "",
@@ -17,14 +17,6 @@ const UpdateAnimal = () => {
     description: "",
   });
   
-  function handleChange(event) {
-    const { name, value } = event.target;
-    setUpdateAnimal({
-      ...updateAnimal,
-      [name]: value,
-    });
-  };
-
   useEffect(() => {
     async function fetchAnimalById() {
       const response = await fetch(`http://localhost:8080/animal/${id}`);
@@ -34,21 +26,31 @@ const UpdateAnimal = () => {
     fetchAnimalById();
   }, [id]);
 
-  function onImageChange(event) {
-    setImages([...event.target.files])
+
+  function handleChangeInput(event) {
+    const { name, value } = event.target;
+    setUpdateAnimal({
+      ...updateAnimal,
+      [name]: value,
+    });
+  };
+
+  function handleImageChange(event) {
+    const images = [...files];
+    images.push(...event.target.files);
+    setFiles(images)
   }
 
   async function handleUploadImages(event) {
     event.preventDefault();
-    const res = await fetch(`"/animal/${id}/upload"`, {
+    const fileData = new FormData();
+    files.forEach((file) => fileData.append('files', file))
+    const res = await fetch(`/animal/${id}/upload`, {
       method: "POST",
       credentials: "include",
-      headers: {
-        "Content-Type": "multipart/form-data"
-      },
-      body: images
+      body: fileData
     })
-    const data = await res.json();
+    console.log(files)
     if (res.status === 200) {
       navigate(`/animals/${id}`)
     } else {
@@ -56,8 +58,7 @@ const UpdateAnimal = () => {
     }
   }
 
-
-  async function handleSubmit(event) {
+  async function handleUpdateAnimal(event) {
     event.preventDefault();
     const { type, breed, name, age, description } = updateAnimal;    
     const res = await fetch(`http://localhost:8080/animal/${id}`, {
@@ -101,9 +102,9 @@ const UpdateAnimal = () => {
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none  focus:border-yellow-500"
                   id="grid-password"
                   type="file"
-                  name="files"
+                  name="images"
                   aria-label="upload animal's images"
-                  onChange={onImageChange}
+                  onChange={handleImageChange}
                 />
               </div>
             </div>
@@ -115,7 +116,7 @@ const UpdateAnimal = () => {
               </button>
             </form>
             </div>
-          <AnimalForm buttonText='Update' placeholders={item} handleChange={handleChange} handleSubmit={handleSubmit} animal={updateAnimal} />
+          <AnimalForm buttonText='Update' placeholders={item} handleChange={handleChangeInput} handleSubmit={handleUpdateAnimal} animal={updateAnimal} />
           
         </div>
   );
