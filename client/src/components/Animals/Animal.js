@@ -43,7 +43,7 @@ const Animal = () => {
           <div className="flex-1 mb-20 grid grid-cols-1 md:grid-cols-2 mx-6 sm:ml-0 sm:w-4/5 w-screen">
             <div className="px-6">
               <img
-                            src={animal.images[0]}
+                            src={animal.avatar}
             
                 className="border-4 border-solid border-yellow-400 inline ms:ml-0 h-44 w-44 sm:h-60 sm:w-60 rounded-full object-cover"
                 alt=""

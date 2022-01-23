@@ -38,13 +38,12 @@ const animalSchema = new mongoose.Schema({
     type: Array
   },
   avatar: {
-    type: Buffer,
-    contentType: String
+    type: String
   }
 })
 
 animalSchema.pre('save', function(next){
-  this.avatar = '/public/images/default.png',
+  this.avatar = 'http://localhost:8080/public/images/default.png',
   next()
 })
 export const Animal = mongoose.model('Animal', animalSchema)

@@ -28,17 +28,14 @@ const fileFilter = (req, file, cb) => {
 export const upload = multer({storage, fileFilter });
 
 export async function uploadImages(req, res, next) {
-  console.log(req.files)
   const reqFiles = [];
   const url = req.protocol + '://' + req.get('host')
   try {
     for (let i =0; i< req.files.length; i++) {
       reqFiles.push(url + '/public/images/' + req.files[i].filename)
     }
-  
     const animalId = req.params.id;
     const animal = await Animal.findById({ _id: animalId });
-    console.log( animal)
     animal.images = reqFiles;
     await animal.save()
     res.send(reqFiles)
