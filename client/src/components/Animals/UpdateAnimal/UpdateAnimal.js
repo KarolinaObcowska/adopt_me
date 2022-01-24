@@ -75,8 +75,8 @@ const UpdateAnimal = () => {
   }
 
   return (
-    <div className="px-5 flex flex-col lg:flex-row gap-6 w-screen items-center lg:items-baseline justify-center mt-10 mb-20">
-        <div className="w=1/2 md:flex flex-col">
+    <div className="px-5 flex flex-col lg:flex-row gap-10 w-screen items-center lg:items-baseline justify-center mt-10 mb-20">
+        <div className="lg:flex flex-col">
         <div className="flex flex-col justify-center">
           <img
           src={item.images && item.images.length > 0 ? item.images[0] : item.avatar}
@@ -87,7 +87,7 @@ const UpdateAnimal = () => {
           {item.name}
         </span>
         <form
-          className="w-full h-full max-w-lg my-6"
+          className="w-full h-full max-w-lg lg:mb-20 mb-5"
           onSubmit={handleUploadImages}
           encType="multipart/form-data"
         >
@@ -126,7 +126,7 @@ const UpdateAnimal = () => {
         animal={updateAnimal}
       />
       </div>
-      <div className="md:w-1/2 w-full">
+      <div className="lg:w-1/2 w-full">
       <AnimalGallery images={item.images} />
       </div>
     </div>
