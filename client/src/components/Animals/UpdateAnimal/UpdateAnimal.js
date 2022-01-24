@@ -1,8 +1,6 @@
 import AnimalForm from "../AnimalForm";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import Golden from "../../../images/golden.jpg";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const UpdateAnimal = () => {
   const { id } = useParams()
@@ -51,9 +49,6 @@ const UpdateAnimal = () => {
       method: "POST",
       body: formData
     })
-    for (var key of formData.entries()) {
-      console.log(key[0] + ', ' + key[1]);
-  }
     if (res.status === 200) {
       navigate(`/animals/${id}`)
     } else {
@@ -72,7 +67,6 @@ const UpdateAnimal = () => {
       },
       body: JSON.stringify(updateAnimal),
     });
-    const data =  await res.json();
     if (res.status !== 200) {
       console.log("fails")
     } else {
@@ -84,8 +78,8 @@ const UpdateAnimal = () => {
   <div className="flex lg:flex-row flex-col gap-6 w-screen justify-center items-center px-32 mt-10">
           <div className="relative w-screen h-full max-w-lg justify-center">
           <img
-                src={Golden}
-                className="border-4 border-solid border-yellow-400 inline ms:ml-0 h-44 w-44 sm:h-60 sm:w-60 rounded-full object-cover"
+                src={item.avatar}
+                className="border-4 border-solid border-yellow-400 inline ms:ml-0 h-20 w-20 sm:h-60 sm:w-60 rounded-full object-cover"
                 alt=""
               />
               <span className="inline ml-6 text-5xl font-bold text-green-700">

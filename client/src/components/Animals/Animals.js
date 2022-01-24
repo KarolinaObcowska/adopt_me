@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Spinner from "../Spinner";
-import Golden from "../../images/golden.jpg";
 import { Link } from "react-router-dom";
 
 const Animals = () => {
@@ -27,7 +26,7 @@ const Animals = () => {
               <div className="rounded-lg flex-1" key={animal._id}>
                 <div className="bg-gray-200 rounded-lg mx-6 mb-6">
                   <img
-                    src={animal.images[0]}
+                    src={animal.avatar}
                     alt="golden retriver"
                     className="w-full h-48 transition object-cover duration-300 rounded-t-lg sm:h-56 opacity-80 hover:opacity-100"
                   />

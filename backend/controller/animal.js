@@ -36,7 +36,7 @@ export async function uploadImages(req, res, next) {
     }
     const animalId = req.params.id;
     const animal = await Animal.findById({ _id: animalId });
-    animal.images = reqFiles;
+    reqFiles.map(file => animal.images.push(file))
     await animal.save()
     res.send(reqFiles)
   } catch (error) {

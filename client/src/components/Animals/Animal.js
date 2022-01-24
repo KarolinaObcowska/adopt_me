@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Spinner from "../Spinner";
-import Golden from "../../images/golden.jpg";
-import g1 from "../../images/golden1.jpg";
-import g2 from "../../images/golden2.jpg";
-import g3 from "../../images/golden3.jpg";
-import g4 from "../../images/golden4.jpg";
-import g5 from "../../images/golden5.jpg";
-import g6 from "../../images/golden6.jpg";
 
 const Animal = () => {
   const [animal, setAnimal] = useState();
@@ -44,7 +37,6 @@ const Animal = () => {
             <div className="px-6">
               <img
                             src={animal.avatar}
-            
                 className="border-4 border-solid border-yellow-400 inline ms:ml-0 h-44 w-44 sm:h-60 sm:w-60 rounded-full object-cover"
                 alt=""
               />
@@ -71,53 +63,16 @@ const Animal = () => {
               </div>
             </div>
             <div className="container mx-auto md:mt-0 mt-6 px-6">
-              <div className="flex flex-row flex-wrap -mx-2">
-                <div className="w-full md:w-1/2 h-64 md:h-auto mb-4 px-2">
+              <div className="fflex flex-wrap -mx-5 overflow-hidden">
+                {animal.images.map((image) => (
+                  <div className="my-5 px-5 w-1/2 overflow-hidden">
                   <img
                     className="object-cover w-full h-full"
-                    src={g1}
+                    src={image}
                     alt="dog"
                   />
                 </div>
-                <div className="w-full md:w-1/2 mb-4 px-2">
-                  <div className="flex flex-col sm:flex-row md:flex-col -mx-2">
-                    <div className="w-full sm:w-1/2 md:w-full h-48 xl:h-64 mb-4 sm:mb-0 md:mb-4 px-2">
-                      <img
-                        className="object-cover w-full h-full"
-                        src={g6}
-                        alt="dog"
-                      />
-                    </div>
-                    <div className="w-full sm:w-1/2 md:w-full h-48 xl:h-64 px-2">
-                      <img
-                        className="object-cover w-full h-full"
-                        src={g3}
-                        alt="dog"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="w-full sm:w-1/3 h-32 md:h-48 mb-4 sm:mb-0 px-2">
-                  <img
-                    className="object-cover w-full h-full"
-                    src={g4}
-                    alt="dog"
-                  />
-                </div>
-                <div className="w-full sm:w-1/3 h-32 md:h-48 mb-4 sm:mb-0 px-2">
-                  <img
-                    className="object-cover w-full h-full"
-                    src={g5}
-                    alt="dog"
-                  />
-                </div>
-                <div className="w-full sm:w-1/3 h-32 md:h-48 px-2">
-                  <img
-                    className="object-cover w-full h-full"
-                    src={g2}
-                    alt="dog"
-                  />
-                </div>
+                ))}
               </div>
             </div>
             <div className="m-6 md:hidden flex justify-center items-center">
@@ -125,7 +80,7 @@ const Animal = () => {
                 onClick={handleAdoptAnimal}
                 className="bg-gradient-to-r from-yellow-400 m-2 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 p-2 w-full rounded-md text-white uppercase"
               >
-                Adopt {animal.name}
+                Adopt
               </button>
               <Link to={`/animals/${id}/update`}
                 className="bg-gradient-to-r from-yellow-400 m-2 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 p-2 w-full rounded-md text-white uppercase"
