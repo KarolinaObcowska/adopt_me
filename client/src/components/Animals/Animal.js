@@ -36,7 +36,9 @@ const Animal = () => {
           <div className="flex-1 mb-20 grid grid-cols-1 md:grid-cols-2 mx-6 sm:ml-0 sm:w-4/5 w-screen">
             <div className="px-6">
               <img
-                            src={animal.avatar}
+                src={
+                  animal.images.length > 0 ? animal.images[0] : animal.avatar
+                }
                 className="border-4 border-solid border-yellow-400 inline ms:ml-0 h-44 w-44 sm:h-60 sm:w-60 rounded-full object-cover"
                 alt=""
               />
@@ -55,23 +57,24 @@ const Animal = () => {
                 >
                   Adopt
                 </button>
-                <Link to={`/animals/${id}/update`}
-                                  className="bg-gradient-to-r m-2 from-yellow-400 text-center to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 p-2 w-1/2 rounded-md text-white uppercase"
-                                  >
+                <Link
+                  to={`/animals/${id}/update`}
+                  className="bg-gradient-to-r m-2 from-yellow-400 text-center to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 p-2 w-1/2 rounded-md text-white uppercase"
+                >
                   Update
                 </Link>
               </div>
             </div>
             <div className="container mx-auto md:mt-0 mt-6 px-6">
-              <div className="fflex flex-wrap -mx-5 overflow-hidden">
+              <div className="flex flex-wrap -mx-5 overflow-hidden">
                 {animal.images.map((image) => (
                   <div className="my-5 px-5 w-1/2 overflow-hidden">
-                  <img
-                    className="object-cover w-full h-full"
-                    src={image}
-                    alt="dog"
-                  />
-                </div>
+                    <img
+                      className="object-cover w-full h-full"
+                      src={image}
+                      alt="dog"
+                    />
+                  </div>
                 ))}
               </div>
             </div>
@@ -82,11 +85,12 @@ const Animal = () => {
               >
                 Adopt
               </button>
-              <Link to={`/animals/${id}/update`}
-                className="bg-gradient-to-r from-yellow-400 m-2 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 p-2 w-full rounded-md text-white uppercase"
-                >
-                  Update
-                </Link>
+              <Link
+                to={`/animals/${id}/update`}
+                className="bg-gradient-to-r from-yellow-400 m-2 text-center to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 p-2 w-full rounded-md text-white uppercase"
+              >
+                Update
+              </Link>
             </div>
           </div>
         </div>

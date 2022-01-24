@@ -9,7 +9,7 @@ const Navbar = () => {
   const { authenticated } = useAuth();
   const ref = useRef();
   const [isOpen, setNavbarOpen] = useState();
-  console.log(authenticated)
+  console.log(authenticated);
 
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
@@ -66,7 +66,7 @@ const Navbar = () => {
                 : "hidden"
             }
           >
-            {authenticated === true ?  (
+            {authenticated === true ? (
               <PrivateRoute setNavbarOpen={setNavbarOpen} isOpen={isOpen} />
             ) : (
               <PublicRoute setNavbarOpen={setNavbarOpen} isOpen={isOpen} />

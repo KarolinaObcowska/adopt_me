@@ -5,4 +5,3 @@ export class ErrorHandler extends Error {
     this.msg = msg
   }
 }
-

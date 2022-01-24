@@ -1,6 +1,5 @@
 import Router from 'express'
 import { signup, login, logout } from '../controller/user.js'
-import { isAuth } from '../middleware/isAuth.js'
 
 const router = Router()
 

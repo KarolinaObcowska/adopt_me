@@ -1,5 +1,5 @@
-import React from "react";
 import HeroImg1 from "../images/herobg.jpg";
+
 const Hero = () => {
   return (
     <div className="fixed w-screen h-screen flex justify-center">

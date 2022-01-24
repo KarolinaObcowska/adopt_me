@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import Error404 from "../../Error404"
+import Error404 from "../../Error404";
 import AnimalForm from "../AnimalForm";
 
 const AddAnimal = () => {
@@ -15,14 +15,14 @@ const AddAnimal = () => {
     age: "",
     description: "",
   });
-  
+
   const placeholders = {
-    type: 'Dog, Cat...',
+    type: "Dog, Cat...",
     breed: "Lablador, Husky...",
     name: "Elf, Jackie...",
     age: "1, 2...",
     description: "Describe dog...",
-  }
+  };
   const handleChange = (event) => {
     const { name, value } = event.target;
     setAnimal({
@@ -33,7 +33,7 @@ const AddAnimal = () => {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const { type, breed, name, age, description } = animal;    
+    const { type, breed, name, age, description } = animal;
     const res = await fetch("http://localhost:8080/animal", {
       method: "POST",
       credentials: "include",
@@ -42,22 +42,28 @@ const AddAnimal = () => {
       },
       body: JSON.stringify(animal),
     });
-    const data =  await res.json();
+    const data = await res.json();
     if (res.status !== 201) {
-      console.log('asd')
+      console.log("asd");
     } else {
       navigate("/animals");
     }
   }
   return (
     <>
-    {authenticated === true ? (
-      <div className="relative sm:top-30 p-6 mt-10 w-screen bg-white-100 flex items-center justify-center">
-        <AnimalForm animal={animal} placeholders={placeholders} handleSubmit={handleSubmit} handleChange={handleChange} buttonText='Create Animal'/>
-      </div>
-    ) : (
-      <Error404 />
-    )}
+      {authenticated === true ? (
+        <div className="relative sm:top-30 p-6 mt-10 w-screen bg-white-100 flex items-center justify-center">
+          <AnimalForm
+            animal={animal}
+            placeholders={placeholders}
+            handleSubmit={handleSubmit}
+            handleChange={handleChange}
+            buttonText="Create Animal"
+          />
+        </div>
+      ) : (
+        <Error404 />
+      )}
     </>
   );
 };

@@ -1,53 +1,46 @@
 import React, { useEffect, useState } from "react";
 import Spinner from "../Spinner";
-import { Link } from "react-router-dom";
+import SearchBar from "../SearchBar/SearchBar";
+import AnimalList from "./AnimalList/AnimalList";
 
 const Animals = () => {
-  const [animals, setAnimals] = useState([]);
+  const [input, setInput] = useState('')
+  const [animalList, setAnimalList] = useState([])
+  const [animalDefaultList, setAnimalDefaultList] = useState([]);
+
   useEffect(() => {
     async function fetchAnimals() {
       const res = await fetch("http://localhost:8080/animal");
       const data = await res.json();
-      setAnimals(data.animals);
+      setAnimalDefaultList(data.animals);
     }
     fetchAnimals();
   }, []);
+
+  const updateInput = async (input) => {
+    if (input === '') {
+      setAnimalList(animalDefaultList)
+    } else {
+      const filteredAnimalList = animalDefaultList.filter(animal => {
+        return animal.breed.toLowerCase().includes(input.toLowerCase());
+      });
+      setInput(input);
+      setAnimalList(filteredAnimalList)
+    }
+  }
+
   return (
-    <>
-      {!animals ? (
+    <div className="mt-10">
+    <SearchBar 
+      input={input}
+      onChange={updateInput}
+    />
+      {!animalList ? (
         <Spinner />
       ) : (
-        <div
-          className="w-screen flex mt-10 px-6 justify-center items-center mb-20"
-          aria-label="Animals for adopt"
-        >
-          <div className="flex flex-row justify-center items-center flex-wrap md:w-4/5 w-screen">
-            {animals.map((animal) => (
-              <div className="rounded-lg flex-1" key={animal._id}>
-                <div className="bg-gray-200 rounded-lg mx-6 mb-6">
-                  <img
-                    src={animal.avatar}
-                    alt="golden retriver"
-                    className="w-full h-48 transition object-cover duration-300 rounded-t-lg sm:h-56 opacity-80 hover:opacity-100"
-                  />
-                  <div className="px-8 py-3">
-                    <div className="text-5xl font-bold text-green-700 uppercase text-center">
-                      <span>{animal.name}</span>
-                    </div>
-                  </div>
-                  <Link
-                    to={`/animals/${animal._id}`}
-                    className="flex w-full h-12 text-md justify-center items-center uppercase font-light text-white rounded-b-lg bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600"
-                  >
-                    See more
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <AnimalList animalList={animalDefaultList} />
       )}
-    </>
+    </div>
   );
 };
 

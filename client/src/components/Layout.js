@@ -11,24 +11,22 @@ import Footer from "./Footer";
 import MobileNavbar from "./Navbar/MobileNavbar";
 import Error404 from "./Error404";
 
-
 const Layout = () => {
-
   return (
     <div className="overflow-y-scroll h-screen">
-          <Navbar />
-          <MobileNavbar />
-          <Routes>
-            <Route path="/" exact element={<Hero />} />
-            <Route path="/animals/add" exact element={<AddAnimal />} />
-            <Route path="/animals" exact element={<Animals />} />
-            <Route path="/animals/:id" exact element={<Animal />} />
-            <Route path="/animals/:id/update" exact element={<UpdateAnimal />} />
-            <Route path="/auth/signup" exact element={<SignUpForm />} />
-            <Route path="/auth/login" exact element={<LoginForm />} />
-            <Route path="*" exact element={<Error404 />} />
-          </Routes>
-          <Footer />
+      <Navbar />
+      <MobileNavbar />
+      <Routes>
+        <Route path="/" exact element={<Hero />} />
+        <Route path="/animals/add" exact element={<AddAnimal />} />
+        <Route path="/animals" exact element={<Animals />} />
+        <Route path="/animals/:id" exact element={<Animal />} />
+        <Route path="/animals/:id/update" exact element={<UpdateAnimal />} />
+        <Route path="/auth/signup" exact element={<SignUpForm />} />
+        <Route path="/auth/login" exact element={<LoginForm />} />
+        <Route path="*" exact element={<Error404 />} />
+      </Routes>
+      <Footer />
     </div>
   );
 };

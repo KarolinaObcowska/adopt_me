@@ -6,10 +6,9 @@ import {
   deleteAnimal,
   updateAnimal,
   uploadImages,
-  upload
+  upload,
 } from '../controller/animal.js'
 import { isAuth } from '../middleware/isAuth.js'
-
 
 const router = Router()
 
@@ -18,9 +17,7 @@ router.post('/', isAuth, createAnimal)
 
 router.get('/:id', getAnimalById)
 router.delete('/:id', deleteAnimal)
-router.put("/:id", isAuth, updateAnimal)
-router.post('/:id/upload',   upload.array('images', 10)
-, uploadImages)
+router.patch('/:id', isAuth, updateAnimal)
+router.post('/:id/upload', upload.array('images', 10), uploadImages)
 
 export default router
-
