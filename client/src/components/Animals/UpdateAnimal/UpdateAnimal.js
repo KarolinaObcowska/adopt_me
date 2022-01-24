@@ -1,6 +1,7 @@
 import AnimalForm from "../AnimalForm";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import AnimalGallery from "../AnimalGallery/AnimalGallery";
 
 const UpdateAnimal = () => {
   const { id } = useParams();
@@ -74,18 +75,19 @@ const UpdateAnimal = () => {
   }
 
   return (
-    <div className="px-5 flex lg:flex-row flex-col gap-6 w-screen justify-center items-center mt-10 mb-20">
-      <div className="relative w-full h-full max-w-lg justify-center">
-        <img
+    <div className="px-5 flex flex-col lg:flex-row gap-6 w-screen items-center lg:items-baseline justify-center mt-10 mb-20">
+        <div className="w=1/2 md:flex flex-col">
+        <div className="flex flex-col justify-center">
+          <img
           src={item.images && item.images.length > 0 ? item.images[0] : item.avatar}
-          className="border-4 border-solid border-yellow-400 inline ms:ml-0 h-44 w-44 sm:h-60 sm:w-60 rounded-full object-cover"
+          className="m-auto border-4 border-solid border-yellow-400 inline ms:ml-0 h-44 w-44 sm:h-60 sm:w-60 rounded-full mb-4 object-cover"
           alt=""
         />
-        <span className="inline ml-6 text-5xl font-bold text-green-700">
+        <span className="text-center inline ml-6 text-5xl font-bold text-green-700">
           {item.name}
         </span>
         <form
-          className="w-full h-full max-w-lg mt-6"
+          className="w-full h-full max-w-lg my-6"
           onSubmit={handleUploadImages}
           encType="multipart/form-data"
         >
@@ -115,7 +117,7 @@ const UpdateAnimal = () => {
             Add Images
           </button>
         </form>
-      </div>
+        </div>
       <AnimalForm
         buttonText="Update"
         placeholders={item}
@@ -123,6 +125,10 @@ const UpdateAnimal = () => {
         handleSubmit={handleUpdateAnimal}
         animal={updateAnimal}
       />
+      </div>
+      <div className="md:w-1/2 w-full">
+      <AnimalGallery images={item.images} />
+      </div>
     </div>
   );
 };

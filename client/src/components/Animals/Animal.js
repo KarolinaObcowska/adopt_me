@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Spinner from "../Spinner";
+import AnimalGallery from "./AnimalGallery/AnimalGallery";
 
 const Animal = () => {
   const [animal, setAnimal] = useState();
@@ -65,19 +66,7 @@ const Animal = () => {
                 </Link>
               </div>
             </div>
-            <div className="container mx-auto md:mt-0 mt-6 px-6">
-              <div className="flex flex-wrap -mx-5 overflow-hidden">
-                {animal.images.map((image) => (
-                  <div className="my-5 px-5 w-1/2 overflow-hidden">
-                    <img
-                      className="object-cover w-full h-full"
-                      src={image}
-                      alt="dog"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
+            <AnimalGallery images={animal.images} />
             <div className="m-6 md:hidden flex justify-center items-center">
               <button
                 onClick={handleAdoptAnimal}

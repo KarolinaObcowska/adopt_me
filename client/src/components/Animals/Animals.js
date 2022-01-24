@@ -15,7 +15,7 @@ const Animals = () => {
       const res = await fetch("http://localhost:8080/animal");
       const data = await res.json();
       setAnimalDefaultList(data.animals);
-      setAnimalList(animalDefaultList)
+      setAnimalList(data.animals)
       setLoading(false)
     }
     fetchAnimals();
@@ -48,7 +48,6 @@ const Animals = () => {
         )
       )
     }
-
     </div>
   );
 };
