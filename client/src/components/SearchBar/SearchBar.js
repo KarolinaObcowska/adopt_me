@@ -1,7 +1,4 @@
-import { useState } from 'react';
-
-const SearchBar = () => {
-  const [keyword, setKeyword] = useState('');
+const SearchBar = ({updateInput, input}) => {
   return (
     <div className="flex justify-center">
         <div className="flex border-2 rounded">
@@ -9,8 +6,8 @@ const SearchBar = () => {
                 type="text" 
                 className="px-4 py-2 w-full" 
                 placeholder="Search..." 
-                value={keyword}
-                onChange={(e) => setKeyword(e.target.value)}
+                value={input}
+                onChange={(e) => updateInput(e.target.value)}
                 />
             <button className="flex items-center justify-center px-4 border-l">
                 <svg className="w-6 h-6 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
