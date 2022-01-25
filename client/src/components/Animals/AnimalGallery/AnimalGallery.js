@@ -1,28 +1,7 @@
 import {CgCloseO} from "react-icons/cg";
-import { useParams } from "react-router-dom";
 
 const AnimalGallery = ({ images, clickHandler, specificStyles }) => {
 
-  const { id } = useParams()
-
-  async function deleteAnimal (e, image) {
-    const img = {
-      name: image
-    }
-    e.preventDefault();
-    const res = await fetch(`http://localhost:8080/animal/${id}/images`, {
-      method: "PATCH",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(img),
-    })
-    if (res.status === 200) {
-      console.log('hello')
-    }
-
-  }
   return (
     <>
       {images && (
@@ -37,7 +16,7 @@ const AnimalGallery = ({ images, clickHandler, specificStyles }) => {
                 /> 
                   <button 
                     className={`absolute top-1 right-6 text-red-600 animate-pulse ${specificStyles}`}
-                    onClick={e => deleteAnimal(e,image)}>
+                    onClick={e => clickHandler(e,image)}>
                     <CgCloseO size={20}/>
                   </button>
 

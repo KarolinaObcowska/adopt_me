@@ -21,9 +21,10 @@ const UpdateAnimal = () => {
       const response = await fetch(`http://localhost:8080/animal/${id}`);
       const data = await response.json();
       setItem(data.animal);
+      setImages(data.animal.images)
     }
     fetchAnimalById();
-  }, [id]);
+  }, [images]);
 
   function handleChangeInput(event) {
     const { name, value } = event.target;
@@ -72,6 +73,25 @@ const UpdateAnimal = () => {
     } else {
       navigate("/animals");
     }
+  }
+
+  async function deleteAnimal (e, image) {
+    const img = {
+      name: image
+    }
+    e.preventDefault();
+    const res = await fetch(`http://localhost:8080/animal/${id}/images`, {
+      method: "PATCH",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(img),
+    })
+    if (res.status === 200) {
+      console.log('hello')
+    }
+
   }
 
   return (
@@ -131,7 +151,7 @@ const UpdateAnimal = () => {
         />
       </div>
       <div className="lg:w-1/2 w-full">
-        <AnimalGallery images={item.images} />
+        <AnimalGallery images={item.images} clickHandler={deleteAnimal}/>
       </div>
     </div>
   );

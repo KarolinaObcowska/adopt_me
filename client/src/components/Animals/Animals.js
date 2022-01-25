@@ -30,6 +30,7 @@ const Animals = () => {
     setAnimalList(filteredAnimalList);
     setLoading(false);
   };
+  
   console.log(input);
   return (
     <div className="mt-10">
