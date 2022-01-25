@@ -28,6 +28,10 @@ const Animal = () => {
     window.location.href = "http://localhost:3000/animals";
     window.open("https://www.schroniskowroclaw.pl/", "_blank");
   }
+
+  const showFullSizeImage = (img) => {
+    img.style.transform = "scale(1.5)"
+  }
   return (
     <>
       {!animal ? (
@@ -66,7 +70,9 @@ const Animal = () => {
                 </Link>
               </div>
             </div>
-            <AnimalGallery images={animal.images} />
+
+            <AnimalGallery images={animal.images} clickHandler={showFullSizeImage} specificStyles='hidden' />
+
             <div className="m-6 md:hidden flex justify-center items-center">
               <button
                 onClick={handleAdoptAnimal}

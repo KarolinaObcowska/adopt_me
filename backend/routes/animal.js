@@ -7,6 +7,7 @@ import {
   updateAnimal,
   uploadImages,
   upload,
+  deleteImage
 } from '../controller/animal.js'
 import { isAuth } from '../middleware/isAuth.js'
 
@@ -18,6 +19,7 @@ router.post('/', isAuth, createAnimal)
 router.get('/:id', getAnimalById)
 router.delete('/:id', deleteAnimal)
 router.patch('/:id', isAuth, updateAnimal)
-router.post('/:id/upload', upload.array('images', 10), uploadImages)
+router.post('/:id/images', upload.array('images', 10), uploadImages)
+router.patch('/:id/images', isAuth, deleteImage);
 
 export default router

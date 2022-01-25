@@ -45,7 +45,7 @@ const UpdateAnimal = () => {
     for (let i = 0; i < images.length; i++) {
       formData.append("images", images[i]);
     }
-    const res = await fetch(`/animal/${id}/upload`, {
+    const res = await fetch(`/animal/${id}/images`, {
       method: "POST",
       body: formData,
     });
@@ -55,7 +55,7 @@ const UpdateAnimal = () => {
       console.log("fail");
     }
   }
-
+ 
   async function handleUpdateAnimal(event) {
     event.preventDefault();
     const { type, breed, name, age, description } = updateAnimal;
@@ -76,58 +76,62 @@ const UpdateAnimal = () => {
 
   return (
     <div className="px-5 flex flex-col lg:flex-row gap-10 w-screen items-center lg:items-baseline justify-center mt-10 mb-20">
-        <div className="lg:flex flex-col">
+      <div className="lg:flex flex-col">
         <div className="flex flex-col justify-center">
           <img
-          src={item.images && item.images.length > 0 ? item.images[0] : item.avatar}
-          className="m-auto border-4 border-solid border-yellow-400 inline ms:ml-0 h-44 w-44 sm:h-60 sm:w-60 rounded-full mb-4 object-cover"
-          alt=""
-        />
-        <span className="text-center inline ml-6 text-5xl font-bold text-green-700">
-          {item.name}
-        </span>
-        <form
-          className="w-full h-full max-w-lg lg:mb-20 mb-5"
-          onSubmit={handleUploadImages}
-          encType="multipart/form-data"
-        >
-          <div className="flex flex-wrap -mx-3 mb-1">
-            <div className="w-full px-3">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="describe"
-              >
-                Images (max. 10)
-              </label>
-              <input
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none  focus:border-yellow-500"
-                type="file"
-                name="images"
-                aria-label="upload animal's images"
-                onChange={handleImageChange}
-                placeholder="Choose Images"
-                multiple
-              />
-            </div>
-          </div>
-          <button
-            type="submit"
-            className="bg-yellow-400 p-2 w-full rounded-md text-white uppercase"
+            src={
+              item.images && item.images.length > 0
+                ? item.images[0]
+                : item.avatar
+            }
+            className="m-auto border-4 border-solid border-yellow-400 inline ms:ml-0 h-44 w-44 sm:h-60 sm:w-60 rounded-full mb-4 object-cover"
+            alt=""
+          />
+          <span className="text-center inline ml-6 text-5xl font-bold text-green-700">
+            {item.name}
+          </span>
+          <form
+            className="w-full h-full max-w-lg lg:mb-20 mb-5"
+            onSubmit={handleUploadImages}
+            encType="multipart/form-data"
           >
-            Add Images
-          </button>
-        </form>
+            <div className="flex flex-wrap -mx-3 mb-1">
+              <div className="w-full px-3">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  htmlFor="describe"
+                >
+                  Images (max. 10)
+                </label>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none  focus:border-yellow-500"
+                  type="file"
+                  name="images"
+                  aria-label="upload animal's images"
+                  onChange={handleImageChange}
+                  placeholder="Choose Images"
+                  multiple
+                />
+              </div>
+            </div>
+            <button
+              type="submit"
+              className="bg-yellow-400 p-2 w-full rounded-md text-white uppercase"
+            >
+              Add Images
+            </button>
+          </form>
         </div>
-      <AnimalForm
-        buttonText="Update"
-        placeholders={item}
-        handleChange={handleChangeInput}
-        handleSubmit={handleUpdateAnimal}
-        animal={updateAnimal}
-      />
+        <AnimalForm
+          buttonText="Update"
+          placeholders={item}
+          handleChange={handleChangeInput}
+          handleSubmit={handleUpdateAnimal}
+          animal={updateAnimal}
+        />
       </div>
       <div className="lg:w-1/2 w-full">
-      <AnimalGallery images={item.images} />
+        <AnimalGallery images={item.images} />
       </div>
     </div>
   );
