@@ -21,10 +21,9 @@ const UpdateAnimal = () => {
       const response = await fetch(`http://localhost:8080/animal/${id}`);
       const data = await response.json();
       setItem(data.animal);
-      setImages(data.animal.images)
     }
     fetchAnimalById();
-  }, [images]);
+  }, [item]);
 
   function handleChangeInput(event) {
     const { name, value } = event.target;
