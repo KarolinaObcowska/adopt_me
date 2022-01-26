@@ -7,7 +7,7 @@ router.post('/signup', signup)
 router.post('/login', login)
 router.post('/logout', logout)
 
-// router.post('/user/password-reser')
+// router.post('/user/password-reset')
 // router.post('/user/password-reset/:id/:token')
 
 export default router

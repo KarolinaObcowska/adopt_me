@@ -1,8 +1,11 @@
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
+import crypto from 'crypto'
 import { ErrorHandler } from '../middleware/error.js'
 import { User } from '../model/user.js'
+import { sendEmail } from '../utils/sendEmail.js'
 import 'dotenv/config'
+import { Token } from '../model/token.js'
 
 export function signToken(id) {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -48,13 +51,15 @@ export async function signup(req, res, next) {
     }
 
     const hashedPassword = await bcrypt.hash(password, 12)
+    
     const user = new User({
       firstname,
       lastname,
       email,
       password: hashedPassword,
     })
-
+    const token = signToken(user._id)
+    user.token = token;
     await user.save()
     sendToken(user, 201, req, res)
   } catch (error) {
@@ -96,4 +101,32 @@ export async function logout(req, res) {
     httponly: true,
   })
   res.status(200).json({ status: 'success' })
+}
+
+export async function resetPassword (req, res, next) {
+  try {
+      const user = await User.findOne({ _id: req.userId })
+      if (!user) {
+        throw new ErrorHandler(
+          401,
+          'User with this email could not be found, please SignUp'
+        )
+      }
+      const token = await Token.findOne({ userId: user._id });
+      if (token) {
+        await token.deleteOne()
+      }
+      const resetToken = crypto.randomBytes(32).toString('hex')
+      const hash = await bcrypt.hash(resetToken, 12);
+      await new Token({
+        userId: user._id,
+        token: hash,
+        createdAt: Date.now()
+      }).save()
+      const link = `http://localhost:8080/password-reset/${user._id}/${resetToken}`;
+      sendEmail(user.email, 'Password Reset', {name: user.name, link: link});
+
+  } catch (error) {
+    
+  }
 }

@@ -110,7 +110,6 @@ const UpdateAnimal = () => {
     ) : (
       <Error404 />
     )
-    
     }
     </>
   );
