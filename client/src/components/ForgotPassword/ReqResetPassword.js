@@ -9,6 +9,7 @@ const ReqResetPassword = () => {
         email: ""
     });
     const navigate = useNavigate();
+    
     const handleChange = (event) => {
       const { name, value } = event.target;
       setData({
@@ -33,9 +34,6 @@ const ReqResetPassword = () => {
           handleModal(res.msg)
         }
         navigate('/auth/login')
-
-            
-        
     }
 
 

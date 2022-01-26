@@ -11,7 +11,7 @@ import Footer from "./Footer";
 import MobileNavbar from "./Navbar/MobileNavbar";
 import Error404 from "./Error404";
 import ReqResetPassword from "./ForgotPassword/ReqResetPassword";
-// import ResetPassword from "./ForgotPassword/ResetPassword";
+import ResetPassword from "./ForgotPassword/ResetPassword";
 
 const Layout = () => {
   return (
@@ -27,7 +27,7 @@ const Layout = () => {
         <Route path="/auth/signup" exact element={<SignUpForm />} />
         <Route path="/auth/login" exact element={<LoginForm />} />
         <Route path="/auth/reset-password" exact element={<ReqResetPassword />} />
-        {/* <Route path="/auth/reset-password/:id/:tokenId" exact element={<ResetPassword />} /> */}
+        <Route path="/auth/password-reset/:id/:tokenId" exact element={<ResetPassword />} />
         <Route path="*" exact element={<Error404 />} />
       </Routes>
       <Footer />

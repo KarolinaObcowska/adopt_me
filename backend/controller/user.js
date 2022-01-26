@@ -124,7 +124,7 @@ export async function requestPasswordReset(req, res, next) {
       token: hash,
       createdAt: Date.now(),
     }).save()
-    const link = `http://localhost:8080/auth/password-reset/${user._id}/${resetToken}`
+    const link = `http://localhost:3000/auth/password-reset/${user._id}/${resetToken}`
     sendEmail(user.email, 'Password Reset', link)
     res.status(200).json({ msg: 'Email has been sent!',})
   } catch (error) {
