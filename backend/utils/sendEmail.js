@@ -3,14 +3,17 @@ import 'dotenv/config'
 
 export const sendEmail = async (email, subject, text) => {
     try {
+    
+
         const transporter = nodemailer.createTransport({
-            host: process.env.HOST,
+            host: 'smtp.ethereal.email',
             port: 587,
             auth: {
-                user: process.env.USER,
-                pass: process.env.PASS
+                user: 'elian.ratke35@ethereal.email',
+                pass: 'Pt6EaU71YbmZF95aBP'
             }
         });
+
         await transporter.sendMail({
             from: process.env.USER,
             to: email,
@@ -18,6 +21,6 @@ export const sendEmail = async (email, subject, text) => {
             text: text
         })
     } catch (error) {
-        next(error)
+        console.log(error)
     }
 }

@@ -61,6 +61,12 @@ export async function signup(req, res, next) {
     const token = signToken(user._id)
     user.token = token;
     await user.save()
+    await new Token({
+      userId: user._id,
+      token: token,
+      createdAt: Date.now()
+
+    }).save()
     sendToken(user, 201, req, res)
   } catch (error) {
     next(error)
@@ -103,9 +109,9 @@ export async function logout(req, res) {
   res.status(200).json({ status: 'success' })
 }
 
-export async function resetPassword (req, res, next) {
+export async function requestPasswordReset (req, res, next) {
   try {
-      const user = await User.findOne({ _id: req.userId })
+      const user = await User.findOne({ email: req.body.email })
       if (!user) {
         throw new ErrorHandler(
           401,
@@ -123,10 +129,41 @@ export async function resetPassword (req, res, next) {
         token: hash,
         createdAt: Date.now()
       }).save()
-      const link = `http://localhost:8080/password-reset/${user._id}/${resetToken}`;
-      sendEmail(user.email, 'Password Reset', {name: user.name, link: link});
-
+      const link = `http://localhost:8080/auth/password-reset/${user._id}/${resetToken}`;
+      sendEmail(user.email, 'Password Reset', link);
+      res.status(200).json({
+        msg: 'Email has been sent!'
+      })
   } catch (error) {
-    
+    next(error)
+  }
+}
+
+export async function resetPassword (req, res, next) {
+  const userId = req.params.id;
+  const token = req.params.token;
+  const password = req.body.password;
+  try {
+    let passwordResetToken = await Token.findOne ({ userId })
+    if (!passwordResetToken) {
+      throw new ErrorHandler(400, 'Invalid or expired password reset token')
+    }
+    const isValid = await bcrypt.compare(token, passwordResetToken.token);
+    if (!isValid) {
+      throw new ErrorHandler(400, 'Invalid or expired password reset token')
+    }
+    const hash = await bcrypt.hash(password, 12)
+    await User.updateOne(
+      { _id: userId },
+      { $set: { password: hash } },
+      { new: true }
+    );
+
+    const user = await User.findById({ _id: userId });
+    sendEmail(user.email, 'Password reseted successfully', user.name)
+    await passwordResetToken.deleteOne();
+    res.status(200).json({msg: 'Password reseted successfully!'})
+  } catch (error) {
+    next(error)
   }
 }

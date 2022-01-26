@@ -22,6 +22,9 @@ const userSchema = new mongoose.Schema({
     required: true,
     minlength: 8,
   },
+  token: {
+    type: String
+  }
 })
 
 export const User = mongoose.model('User', userSchema)

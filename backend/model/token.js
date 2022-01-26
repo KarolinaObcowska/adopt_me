@@ -1,8 +1,8 @@
-import mongoose, { Schema } from 'mongoose'
+import mongoose from 'mongoose'
 
 const tokenSchema = new mongoose.Schema ({
     userId : {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Types.ObjectId,
         required: true,
         ref: 'User'
     },
