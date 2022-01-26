@@ -9,7 +9,7 @@ const ReqResetPassword = () => {
         email: ""
     });
     const navigate = useNavigate();
-    
+
     const handleChange = (event) => {
       const { name, value } = event.target;
       setData({
@@ -27,13 +27,11 @@ const ReqResetPassword = () => {
               body: JSON.stringify(data),
         });
         const res = await response.json()
-        
+        handleModal(res.msg)
         if (res.status !== 200) {
-            handleModal(res.message)
-        } else {
-          handleModal(res.msg)
-        }
-        navigate('/auth/login')
+          navigate('/auth/login')
+
+        } 
     }
 
 

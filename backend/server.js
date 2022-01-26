@@ -36,7 +36,7 @@ app
     console.log(err)
     res.json({
       status: err.statusCode,
-      message: err.msg,
+      msg: err.msg,
     })
   })
 
