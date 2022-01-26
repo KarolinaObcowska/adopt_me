@@ -3,9 +3,11 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import AnimalGallery from "../AnimalGallery/AnimalGallery";
 import UpdateImages from "./UpdateImages";
+import { useAuth } from "../../../hooks/useAuth";
+import Error404 from "../../Error404";
 
 const UpdateAnimal = () => {
-
+  const { authenticated } = useAuth();
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -74,7 +76,9 @@ const UpdateAnimal = () => {
   }
 
   return (
-    <div className="px-5 flex flex-col lg:flex-row gap-10 w-screen items-center lg:items-baseline justify-center mt-10 mb-20">
+    <>
+    { authenticated ? (
+      <div className="px-5 flex flex-col lg:flex-row gap-10 w-screen items-center lg:items-baseline justify-center mt-10 mb-20">
       <div className="lg:flex flex-col">
         <div className="flex flex-col justify-center">
           <img
@@ -103,6 +107,12 @@ const UpdateAnimal = () => {
         <AnimalGallery images={item.images} clickHandler={deleteAnimal}/>
       </div>
     </div>
+    ) : (
+      <Error404 />
+    )
+    
+    }
+    </>
   );
 };
 

@@ -2,10 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Spinner from "../Spinner";
 import AnimalGallery from "./AnimalGallery/AnimalGallery";
+import { useAuth } from "../../hooks/useAuth";
 
 const Animal = () => {
-  const [animal, setAnimal] = useState();
+  const { authenticated } = useAuth();
   const { id } = useParams();
+
+  const [animal, setAnimal] = useState();
+
 
   useEffect(() => {
     async function fetchAnimalById() {
@@ -62,12 +66,15 @@ const Animal = () => {
                 >
                   Adopt
                 </button>
-                <Link
+                {authenticated &&
+                  <Link
                   to={`/animals/${id}/update`}
                   className="bg-gradient-to-r m-2 from-yellow-400 text-center to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 p-2 w-1/2 rounded-md text-white uppercase"
                 >
                   Update
                 </Link>
+                }
+                
               </div>
             </div>
 
@@ -80,12 +87,14 @@ const Animal = () => {
               >
                 Adopt
               </button>
-              <Link
-                to={`/animals/${id}/update`}
-                className="bg-gradient-to-r from-yellow-400 m-2 text-center to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 p-2 w-full rounded-md text-white uppercase"
-              >
-                Update
-              </Link>
+              {authenticated &&
+                  <Link
+                  to={`/animals/${id}/update`}
+                  className="bg-gradient-to-r m-2 from-yellow-400 text-center to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 p-2 w-1/2 rounded-md text-white uppercase"
+                >
+                  Update
+                </Link>
+                }
             </div>
           </div>
         </div>
