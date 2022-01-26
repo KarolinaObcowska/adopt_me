@@ -10,7 +10,6 @@ const Animal = () => {
 
   const [animal, setAnimal] = useState();
 
-
   useEffect(() => {
     async function fetchAnimalById() {
       const response = await fetch(`http://localhost:8080/animal/${id}`);
@@ -34,8 +33,8 @@ const Animal = () => {
   }
 
   const showFullSizeImage = (img) => {
-    img.style.transform = "scale(1.5)"
-  }
+    img.style.transform = "scale(1.5)";
+  };
   return (
     <>
       {!animal ? (
@@ -66,19 +65,22 @@ const Animal = () => {
                 >
                   Adopt
                 </button>
-                {authenticated &&
+                {authenticated && (
                   <Link
-                  to={`/animals/${id}/update`}
-                  className="bg-gradient-to-r m-2 from-yellow-400 text-center to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 p-2 w-1/2 rounded-md text-white uppercase"
-                >
-                  Update
-                </Link>
-                }
-                
+                    to={`/animals/${id}/update`}
+                    className="bg-gradient-to-r m-2 from-yellow-400 text-center to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 p-2 w-1/2 rounded-md text-white uppercase"
+                  >
+                    Update
+                  </Link>
+                )}
               </div>
             </div>
 
-            <AnimalGallery images={animal.images} clickHandler={showFullSizeImage} specificStyles='hidden' />
+            <AnimalGallery
+              images={animal.images}
+              clickHandler={showFullSizeImage}
+              specificStyles="hidden"
+            />
 
             <div className="m-6 md:hidden flex justify-center items-center">
               <button
@@ -87,14 +89,14 @@ const Animal = () => {
               >
                 Adopt
               </button>
-              {authenticated &&
-                  <Link
+              {authenticated && (
+                <Link
                   to={`/animals/${id}/update`}
                   className="bg-gradient-to-r m-2 from-yellow-400 text-center to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 p-2 w-1/2 rounded-md text-white uppercase"
                 >
                   Update
                 </Link>
-                }
+              )}
             </div>
           </div>
         </div>

@@ -1,26 +1,24 @@
-import nodemailer from 'nodemailer';
+import nodemailer from 'nodemailer'
 import 'dotenv/config'
 
 export const sendEmail = async (email, subject, text) => {
-    try {
-    
+  try {
+    const transporter = await nodemailer.createTransport({
+      host: 'smtp.mailtrap.io',
+      port: 25,
+      auth: {
+        user: '2a4130074e4d71',
+        pass: '0d0b8be03a5e8b',
+      },
+    })
 
-        const transporter = nodemailer.createTransport({
-            host: 'smtp.ethereal.email',
-            port: 587,
-            auth: {
-                user: 'elian.ratke35@ethereal.email',
-                pass: 'Pt6EaU71YbmZF95aBP'
-            }
-        });
-
-        await transporter.sendMail({
-            from: process.env.USER,
-            to: email,
-            subject: subject,
-            text: text
-        })
-    } catch (error) {
-        console.log(error)
-    }
+    await transporter.sendMail({
+      from: process.env.HOST,
+      to: email,
+      subject: subject,
+      text: text,
+    })
+  } catch (error) {
+    console.log(error)
+  }
 }

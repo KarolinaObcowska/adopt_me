@@ -45,7 +45,7 @@ app.get('/', (req, res) => {
 })
 
 export const start = () => {
-  app.listen(8080, () => {
+  app.listen(process.env.PORT, () => {
     console.log('Server is running on 8080..')
   })
 }

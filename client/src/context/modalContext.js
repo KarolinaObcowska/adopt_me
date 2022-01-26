@@ -7,7 +7,6 @@ const { Provider } = (ModalContext = createContext())
 
 const ModalProvider = ({ children }) => {
     const {visible, handleModal, content, closeModal } = useModal();
-    console.log(children)
     return (
         <Provider value={{ visible, handleModal, content, closeModal }}>
             <Modal />

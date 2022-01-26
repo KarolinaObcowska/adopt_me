@@ -9,7 +9,6 @@ const Navbar = () => {
   const { authenticated } = useAuth();
   const ref = useRef();
   const [isOpen, setNavbarOpen] = useState();
-  console.log(authenticated);
 
   useEffect(() => {
     const checkIfClickedOutside = (e) => {

@@ -45,21 +45,21 @@ export async function uploadImages(req, res, next) {
 }
 
 export async function deleteImage(req, res, next) {
-  const animalId = req.params.id;
-  const image = req.body.name;
+  const animalId = req.params.id
+  const image = req.body.name
   try {
-    const animal = await Animal.findById(animalId);
+    const animal = await Animal.findById(animalId)
     if (!animal) {
       throw new ErrorHandler(401, 'Animals could not be found')
     }
-  const index = animal.images.indexOf(image)
-  if (index !== -1) {
-    animal.images.splice(index, 1)
-  } else {
-    throw new ErrorHandler(404, 'Images does not exist.')
-  }
-  const result = await animal.save();
-  res.status(200).json({msg: 'Successfully deleted', images: result.images})
+    const index = animal.images.indexOf(image)
+    if (index !== -1) {
+      animal.images.splice(index, 1)
+    } else {
+      throw new ErrorHandler(404, 'Images does not exist.')
+    }
+    const result = await animal.save()
+    res.status(200).json({ msg: 'Successfully deleted', images: result.images })
   } catch (error) {
     next(error)
   }

@@ -10,6 +10,8 @@ import Animal from "./Animals/Animal";
 import Footer from "./Footer";
 import MobileNavbar from "./Navbar/MobileNavbar";
 import Error404 from "./Error404";
+import ReqResetPassword from "./ForgotPassword/ReqResetPassword";
+// import ResetPassword from "./ForgotPassword/ResetPassword";
 
 const Layout = () => {
   return (
@@ -24,6 +26,8 @@ const Layout = () => {
         <Route path="/animals/:id/update" exact element={<UpdateAnimal />} />
         <Route path="/auth/signup" exact element={<SignUpForm />} />
         <Route path="/auth/login" exact element={<LoginForm />} />
+        <Route path="/auth/reset-password" exact element={<ReqResetPassword />} />
+        {/* <Route path="/auth/reset-password/:id/:tokenId" exact element={<ResetPassword />} /> */}
         <Route path="*" exact element={<Error404 />} />
       </Routes>
       <Footer />
