@@ -66,6 +66,7 @@ export async function signup(req, res, next) {
       token: token,
       createdAt: Date.now(),
     }).save()
+    sendEmail('welcome', user, `Welcome ${user.firstname}`, link)
     sendToken(user, 201, req, res)
   } catch (error) {
     next(error)
@@ -128,7 +129,7 @@ export async function requestPasswordReset(req, res, next) {
       createdAt: Date.now(),
     }).save()
     const link = `http://localhost:3000/auth/password-reset/${user._id}/${resetToken}`
-    sendEmail(user.email, 'Password Reset', link)
+    sendEmail('reset password', user, 'Password Reset', link)
     res.status(200).json({ msg: 'Email has been sent!' })
   } catch (error) {
     next(error)
@@ -155,7 +156,7 @@ export async function resetPassword(req, res, next) {
       { new: true }
     )
     const user = await User.findById({ _id: userId })
-    sendEmail(user, 'Password reseted successfully', user.name)
+    sendEmail('after reset', user, 'Password reseted successfully', user.firstname)
     await passwordResetToken.deleteOne()
     res.status(200).json({ msg: 'Password reseted successfully!' })
   } catch (error) {

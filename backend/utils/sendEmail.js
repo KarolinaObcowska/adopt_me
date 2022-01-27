@@ -5,15 +5,39 @@ import path from 'path';
 
 import 'dotenv/config';
 
+const changeTemplates = (emailType, user) => {
+  let filePath,
+  source,
+  template,
+  replacements;
+  if (type === 'reset password') {
+     filePath = path.join(__dirname, './emails/reset-password.html')
+     source = fs.readFileSync(filePath, 'utf-8').toString();
+     template = handlebars.compile(source);
+     replacements = {
+      username: user.firstname,
+    };
+  } else if (type === 'after reset') {
+     filePath = path.join(__dirname, './emails/reset-password-success.html')
+     source = fs.readFileSync(filePath, 'utf-8').toString();
+     template = handlebars.compile(source);
+     replacements = {
+      username: user.firstname,
+    };
+  } else if (type === 'welcome') {
+    filePath = path.join(__dirname, './emails/welcome.html')
+    source = fs.readFileSync(filePath, 'utf-8').toString();
+    template = handlebars.compile(source);
+    replacements = {
+     username: user.firstname,
+   };
+  }
+  const htmlToSend = template(replacements)
+  return htmlToSend;
+}
 
-export const sendEmail = async (user, subject, text) => {
-  const filePath = path.join(__dirname, './emails/reset-password.html')
-  const source = fs.readFileSync(filePath, 'utf-8').toString();
-  const template = handlebars.compile(source);
-  const replacements = {
-    username: user.firstname,
-  };
-  const htmlToSend = template(replacements);
+export const sendEmail = async (type, user, subject, text) => {
+  const htmlFile = changeTemplates(type, user)
   try {
     const transporter = await nodemailer.createTransport({
       host: 'smtp.mailtrap.io',
@@ -28,7 +52,7 @@ export const sendEmail = async (user, subject, text) => {
       to: user.email,
       subject: subject,
       text: text,
-      html: htmlToSend
+      html: htmlFile
     }
     const info = await transporter.sendMail(mailOptions);
   } catch (error) {
