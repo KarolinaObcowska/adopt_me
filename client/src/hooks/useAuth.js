@@ -50,6 +50,7 @@ export const AuthProvider = ({children}) => {
                 "Content-Type": "application/json",
             },
         });
+        cookies.remove('jwt')
         setAuthenticated(false)
         navigate('/')
     }

@@ -86,11 +86,31 @@ export async function createAnimal(req, res, next) {
 
 export async function getAllAnimals(req, res, next) {
   try {
-    const animals = await Animal.find().sort({ createdAt: 1 })
+    let query = Animal.find();
+
+    const page = parseInt(req.query.page) || 1;
+    const pageSize = parseInt(req.query.limit) || 6;
+    const skip = (page -1) * pageSize;
+    const total = await Animal.countDocuments();
+    const pages = Math.ceil(tota / pageSize);
+
+    query = query.skip(skip).limit(pageSize);
+
+    if (page > pages) {
+      throw new ErrorHandler(404), 'Page not found'
+    }
+
+    const animals = await query;
     if (!animals) {
       throw new ErrorHandler(401, 'Animals could not be found')
     }
-    res.status(200).json({ msg: 'fetched animals', animals: animals })
+    res.status(200).json({ 
+      msg: 'fetched animals', 
+      animals: animals,
+      count: animals.length,
+      page,
+      pages,
+    })
   } catch (error) {
     next(error)
   }
