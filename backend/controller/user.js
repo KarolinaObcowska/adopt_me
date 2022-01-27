@@ -66,7 +66,7 @@ export async function signup(req, res, next) {
       token: token,
       createdAt: Date.now(),
     }).save()
-    sendEmail('welcome', user, `Welcome ${user.firstname}`, link)
+    sendEmail('welcome', user, `Welcome ${user.firstname}`)
     sendToken(user, 201, req, res)
   } catch (error) {
     next(error)
