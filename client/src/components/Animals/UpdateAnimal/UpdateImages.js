@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { ModalContext } from "../../../context/modalContext"
 
 const UpdateImages = ({ id, navigate }) => {
+  const { handleModal } = useContext(ModalContext);
+
   const [images, setImages] = useState([]);
 
   function handleImageChange(event) {
@@ -19,10 +22,11 @@ const UpdateImages = ({ id, navigate }) => {
       method: "POST",
       body: formData,
     });
+    const data = await res.json()
     if (res.status === 200) {
       navigate(`/animals/${id}`);
     } else {
-      console.log("fail");
+      handleModal(data.msg)
     }
   }
 

@@ -1,6 +1,7 @@
 import AnimalForm from "../AnimalForm";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { ModalContext } from "../../../context/modalContext"
 import AnimalGallery from "../AnimalGallery/AnimalGallery";
 import UpdateImages from "./UpdateImages";
 import { useAuth } from "../../../hooks/useAuth";
@@ -8,6 +9,7 @@ import Error404 from "../../Error404";
 
 const UpdateAnimal = () => {
   const { authenticated } = useAuth();
+  const { handleModal } = useContext(ModalContext);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -48,8 +50,9 @@ const UpdateAnimal = () => {
       },
       body: JSON.stringify(updateAnimal),
     });
+    const data = await res.json();
     if (res.status !== 200) {
-      console.log("fails");
+      handleModal(data.msg)
     } else {
       navigate("/animals");
     }
@@ -68,8 +71,9 @@ const UpdateAnimal = () => {
       },
       body: JSON.stringify(img),
     });
-    if (res.status === 200) {
-      console.log("hello");
+    const data = await res.json()
+    if (res.status !== 200) {
+      handleModal(data.msg);
     }
   }
 

@@ -5,6 +5,7 @@ const AnimalForm = ({
   animal,
   placeholders,
 }) => {
+  
   return (
     <form className="relative w-full h-full max-w-lg" onSubmit={handleSubmit}>
       <div className="flex flex-wrap -mx-3 mb-6">
