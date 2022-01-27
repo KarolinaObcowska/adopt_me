@@ -1,15 +1,13 @@
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination/Pagination";
 
-const AnimalList = ({ animalList, pages, setPages, pageNumber }) => {
+const AnimalList = ({ animalList, pages, page, setPage }) => {
   return (
-    <>
-          <Pagination pages={pages} setPages={setPages} pageNumber={pageNumber}/>
+    <div className="items-center flex flex-col">
     <div
       className="w-screen flex mt-10 px-6 justify-center  flex-colsitems-center mb-20"
       aria-label="Animals for adopt"
     >
-      <Pagination pages={pages} setPages={setPages} pageNumber={pageNumber}/>
       <div className="flex flex-row justify-center items-center flex-wrap md:w-4/5 w-screen">
         {animalList.map((animal) => (
           <div className="rounded-lg flex-1" key={animal._id}>
@@ -37,9 +35,8 @@ const AnimalList = ({ animalList, pages, setPages, pageNumber }) => {
         ))}
       </div>
     </div>
-    <Pagination pages={pages} setPages={setPages} pageNumber={pageNumber}/>
-
-    </>
+    <Pagination page={page} setPage={setPage} pages={pages} />
+    </div>
   );
 };
 

@@ -88,7 +88,7 @@ export async function getAllAnimals(req, res, next) {
   try {
 
     const page = parseInt(req.query.page) || 1;
-    const pageSize = parseInt(req.query.limit) || 6;
+    const pageSize = parseInt(req.query.limit) || 5;
     const skip = (page -1) * pageSize;
     const total = await Animal.countDocuments();
     const pages = Math.ceil(total/ pageSize);

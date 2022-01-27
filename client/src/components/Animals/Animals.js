@@ -13,12 +13,12 @@ const Animals = () => {
   const [animalDefaultList, setAnimalDefaultList] = useState([]);
 
   const [pages, setPages] = useState(1);
-
+  const [page, setPage] = useState(pageNumber)
 
   useEffect(() => {
     async function fetchAnimals() {
       setLoading(true);
-      const res = await fetch("http://localhost:8080/animal");
+      const res = await fetch(`http://localhost:8080/animal?page=${page}`);
       const data = await res.json();
       console.log(res)
       setPages(data.pages)
@@ -27,7 +27,7 @@ const Animals = () => {
       setLoading(false);
     }
     fetchAnimals();
-  }, []);
+  }, [page]);
 
   const updateInput = async (input) => {
     setLoading(true);
@@ -46,7 +46,7 @@ const Animals = () => {
       {loading ? (
         <Spinner />
       ) : animalList ? (
-        <AnimalList animalList={animalList}  pages={pages} setPages={setPages} pageNumber={pageNumber}/>
+        <AnimalList animalList={animalList}  page={page} setPage={setPage} pages={pages} />
       ) : (
         <p>It looks like all animals have been adopted! :)</p>
       )}

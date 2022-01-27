@@ -3,7 +3,7 @@ const PublicRoute = ({ setNavbarOpen, isOpen }) => {
   return (
     <div>
       <RouteItem
-        location="/animals"
+        location="/animals/page/1"
         text="Animals for adopt"
         handleClick={() => setNavbarOpen(!isOpen)}
       />

@@ -1,12 +1,11 @@
-import { useState } from 'react';
 
-const Pagination = ({pages, setPages, pageNumber}) => {
-    const [page, setPage] = useState(pageNumber);
+const Pagination = ({ pages, page, setPage }) => {
     let middlePagination;
 
     if (pages <= 5) {
         middlePagination = [...Array(pages)].map((_, idx) => (
             <button
+            className="text-xl p-4"
                 key={idx + 1}
                 onClick={() => setPage(idx + 1)}
                 disabled={page === idx + 1}
@@ -80,6 +79,7 @@ const Pagination = ({pages, setPages, pageNumber}) => {
     pages > 1 && (
         <div>
           <button
+          className="text-xl p-4"
             onClick={() => setPage((page) => page - 1)}
             disabled={page === 1}
           >
@@ -87,6 +87,7 @@ const Pagination = ({pages, setPages, pageNumber}) => {
           </button>
           {middlePagination}
           <button
+            className="text-xl p-4"
             onClick={() => setPage((page) => page + 1)}
             disabled={page === pages}
           >
