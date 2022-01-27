@@ -32,7 +32,7 @@ const UpdateImages = ({ id, navigate }) => {
 
   return (
     <form
-      className="w-full h-full max-w-lg lg:mb-20 mb-5"
+      className="w-full h-full max-w-lg mb-5"
       onSubmit={handleUploadImages}
       encType="multipart/form-data"
     >

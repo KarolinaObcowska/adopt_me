@@ -80,7 +80,7 @@ const UpdateAnimal = () => {
   return (
     <>
       {authenticated ? (
-        <div className="px-5 flex flex-col lg:flex-row gap-10 w-screen items-center lg:items-baseline justify-center mt-10 mb-20">
+        <div className="px-5 flex flex-col lg:flex-row gap-5 w-screen lg:items-start md:items-center justify-center mt-10 mb-20">
           <div className="lg:flex flex-col">
             <div className="flex flex-col justify-center">
               <img
@@ -89,7 +89,7 @@ const UpdateAnimal = () => {
                     ? item.images[0]
                     : item.avatar
                 }
-                className="m-auto border-4 border-solid border-yellow-400 inline ms:ml-0 h-44 w-44 sm:h-60 sm:w-60 rounded-full mb-4 object-cover"
+                className="m-auto border-4 border-solid border-yellow-400 inline ms:ml-0 h-60 w-60 sm:h-60 sm:w-60 rounded-full mb-4 object-cover"
                 alt=""
               />
               <span className="text-center inline ml-6 text-5xl font-bold text-green-700">
