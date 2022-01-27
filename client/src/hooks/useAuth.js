@@ -35,7 +35,7 @@ export const AuthProvider = ({children}) => {
         const data = await res.json()
         console.log(data)
         if (!data.user) {
-            handleModal(data.message)
+            handleModal(data.msg)
           } else {
             setAuthenticated(true)
             navigate('/animals')
@@ -65,9 +65,8 @@ export const AuthProvider = ({children}) => {
             body: JSON.stringify(user),
         });
         const data = await res.json();
-        console.log(data)
         if (data.status !== 'success') {
-            setAuthenticated(false)
+            handleModal(data.msg)
         } else {
             setAuthenticated(true)
             navigate('/animals')
