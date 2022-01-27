@@ -12,7 +12,7 @@ const Modal = () => {
           <div className="relative w-1/2 my-6 mx-auto max-w-3xl">
             <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
               <div className="mx-auto flex pt-5">
-                <h2 className="text-xl text-center text-green-800">
+                <h2 className="text-xl text-center p-3 text-green-800">
                   {content}
                 </h2>
               </div>

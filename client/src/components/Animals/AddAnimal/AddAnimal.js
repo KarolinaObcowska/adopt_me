@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useAuth } from "../../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { ModalContext } from "../../../context/modalContext"
 import Error404 from "../../Error404";
 import AnimalForm from "../AnimalForm";
 
 const AddAnimal = () => {
   const { authenticated } = useAuth();
+  const { handleModal } = useContext(ModalContext);
   const navigate = useNavigate();
 
   const [animal, setAnimal] = useState({
@@ -44,7 +46,7 @@ const AddAnimal = () => {
     });
     const data = await res.json();
     if (res.status !== 201) {
-      console.log("asd");
+      handleModal(data.msg, data.fields)
     } else {
       navigate("/animals");
     }

@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 const animalSchema = new mongoose.Schema({
   type: {
     type: String,
-    required: true,
+    required: [true, 'Enter animal type.'],
     trim: true,
     maxlength: [
       20,
@@ -14,7 +14,7 @@ const animalSchema = new mongoose.Schema({
   name: {
     type: String,
     trim: true,
-    required: true,
+    required: [true, 'Enter animal name.'],
     maxlength: [
       20,
       'A animal name must be equal or shorten than 20 characters.',
@@ -23,7 +23,7 @@ const animalSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: true,
+    required: [true, 'Enter animal description..'],
     maxlength: [
       3000,
       'A animal description must be equal or shorten than 3000 characters.',
@@ -32,7 +32,7 @@ const animalSchema = new mongoose.Schema({
   breed: {
     type: String,
     trim: true,
-    required: true,
+    required: [true, 'Enter animal breed.'],
     minlength: [
       5,
       'A animal breed must be equal or shorten than 5 characters.',
@@ -44,7 +44,7 @@ const animalSchema = new mongoose.Schema({
   },
   age: {
     type: Number,
-    required: true,
+    required: [true, 'Enter animal age.'],
     trim: true,
     min: [0.1, 'A animal age must be above 0.'],
     max: [25, 'A animal age must be below 25 years.'],

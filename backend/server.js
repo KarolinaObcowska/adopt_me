@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import path from 'path'
+import {handleValidationError} from './middleware/error.js'
 import cookieParser from 'cookie-parser'
 import userRouter from './routes/user.js'
 import animalRouter from './routes/animal.js'
@@ -33,11 +33,11 @@ app
   .use('/auth', userRouter)
   .use('/animal', animalRouter)
   .use((err, req, res, next) => {
-    console.log(err)
-    res.json({
-      status: err.statusCode,
-      msg: err.msg,
-    })
+    if (err.name === 'ValidationError') {
+      handleValidationError(err, res)
+    } else {
+      res.json({ status: err.statusCode, msg: err.msg })
+    }
   })
 
 app.get('/', (req, res) => {
