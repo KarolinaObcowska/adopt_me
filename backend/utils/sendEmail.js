@@ -4,8 +4,9 @@ import fs from 'fs';
 import path from 'path';
 
 import 'dotenv/config';
+const __dirname = './public'
 
-const changeTemplates = (emailType, user) => {
+const changeTemplates = (type, user, text) => {
   let filePath,
   source,
   template,
@@ -15,7 +16,7 @@ const changeTemplates = (emailType, user) => {
      source = fs.readFileSync(filePath, 'utf-8').toString();
      template = handlebars.compile(source);
      replacements = {
-      username: user.firstname,
+      link: text,
     };
   } else if (type === 'after reset') {
      filePath = path.join(__dirname, './emails/reset-password-success.html')
@@ -37,7 +38,7 @@ const changeTemplates = (emailType, user) => {
 }
 
 export const sendEmail = async (type, user, subject, text) => {
-  const htmlFile = changeTemplates(type, user)
+  const htmlFile = changeTemplates(type, user, text)
   try {
     const transporter = await nodemailer.createTransport({
       host: 'smtp.mailtrap.io',
