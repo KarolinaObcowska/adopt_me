@@ -65,8 +65,12 @@ const LoginForm = () => {
             Login
           </button>
         </div>
-        <Link to="/auth/reset-password" className="text-green-700 font-medium text-right text-md">
-          <p>Forgot password?</p></Link>
+        <Link
+          to="/auth/reset-password"
+          className="text-green-700 font-medium text-right text-md"
+        >
+          <p>Forgot password?</p>
+        </Link>
       </form>
     </div>
   );

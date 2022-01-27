@@ -1,7 +1,19 @@
-import nodemailer from 'nodemailer'
-import 'dotenv/config'
+import nodemailer from 'nodemailer';
+import handlebars from 'handlebars';
+import fs from 'fs';
+import path from 'path';
 
-export const sendEmail = async (email, subject, text) => {
+import 'dotenv/config';
+
+
+export const sendEmail = async (user, subject, text) => {
+  const filePath = path.join(__dirname, './emails/reset-password.html')
+  const source = fs.readFileSync(filePath, 'utf-8').toString();
+  const template = handlebars.compile(source);
+  const replacements = {
+    username: user.firstname,
+  };
+  const htmlToSend = template(replacements);
   try {
     const transporter = await nodemailer.createTransport({
       host: 'smtp.mailtrap.io',
@@ -10,14 +22,15 @@ export const sendEmail = async (email, subject, text) => {
         user: '2a4130074e4d71',
         pass: '0d0b8be03a5e8b',
       },
-    })
-
-    await transporter.sendMail({
+    });
+    const mailOptions = {
       from: process.env.HOST,
-      to: email,
+      to: user.email,
       subject: subject,
       text: text,
-    })
+      html: htmlToSend
+    }
+    const info = await transporter.sendMail(mailOptions);
   } catch (error) {
     console.log(error)
   }

@@ -111,7 +111,10 @@ export async function requestPasswordReset(req, res, next) {
   try {
     const user = await User.findOne({ email: req.body.email })
     if (!user) {
-      throw new ErrorHandler(401, 'User with this email could not be found, please SignUp')
+      throw new ErrorHandler(
+        401,
+        'User with this email could not be found, please SignUp'
+      )
     }
     const token = await Token.findOne({ userId: user._id })
     if (token) {
@@ -126,7 +129,7 @@ export async function requestPasswordReset(req, res, next) {
     }).save()
     const link = `http://localhost:3000/auth/password-reset/${user._id}/${resetToken}`
     sendEmail(user.email, 'Password Reset', link)
-    res.status(200).json({ msg: 'Email has been sent!',})
+    res.status(200).json({ msg: 'Email has been sent!' })
   } catch (error) {
     next(error)
   }
@@ -152,7 +155,7 @@ export async function resetPassword(req, res, next) {
       { new: true }
     )
     const user = await User.findById({ _id: userId })
-    sendEmail(user.email, 'Password reseted successfully', user.name)
+    sendEmail(user, 'Password reseted successfully', user.name)
     await passwordResetToken.deleteOne()
     res.status(200).json({ msg: 'Password reseted successfully!' })
   } catch (error) {

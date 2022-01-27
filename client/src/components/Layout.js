@@ -26,8 +26,16 @@ const Layout = () => {
         <Route path="/animals/:id/update" exact element={<UpdateAnimal />} />
         <Route path="/auth/signup" exact element={<SignUpForm />} />
         <Route path="/auth/login" exact element={<LoginForm />} />
-        <Route path="/auth/reset-password" exact element={<ReqResetPassword />} />
-        <Route path="/auth/password-reset/:id/:tokenId" exact element={<ResetPassword />} />
+        <Route
+          path="/auth/reset-password"
+          exact
+          element={<ReqResetPassword />}
+        />
+        <Route
+          path="/auth/password-reset/:id/:tokenId"
+          exact
+          element={<ResetPassword />}
+        />
         <Route path="*" exact element={<Error404 />} />
       </Routes>
       <Footer />
