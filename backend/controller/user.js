@@ -156,7 +156,12 @@ export async function resetPassword(req, res, next) {
       { new: true }
     )
     const user = await User.findById({ _id: userId })
-    sendEmail('after reset', user, 'Password reseted successfully', user.firstname)
+    sendEmail(
+      'after reset',
+      user,
+      'Password reseted successfully',
+      user.firstname
+    )
     await passwordResetToken.deleteOne()
     res.status(200).json({ msg: 'Password reseted successfully!' })
   } catch (error) {

@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { ModalContext } from "../../../context/modalContext"
+import { ModalContext } from "../../../context/modalContext";
 
 const UpdateImages = ({ id, navigate }) => {
   const { handleModal } = useContext(ModalContext);
@@ -22,11 +22,11 @@ const UpdateImages = ({ id, navigate }) => {
       method: "POST",
       body: formData,
     });
-    const data = await res.json()
+    const data = await res.json();
     if (res.status === 200) {
       navigate(`/animals/${id}`);
     } else {
-      handleModal(data.msg)
+      handleModal(data.msg);
     }
   }
 

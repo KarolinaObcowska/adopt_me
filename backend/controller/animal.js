@@ -86,29 +86,28 @@ export async function createAnimal(req, res, next) {
 
 export async function getAllAnimals(req, res, next) {
   try {
+    const page = parseInt(req.query.page) || 1
+    const pageSize = parseInt(req.query.limit) || 5
+    const skip = (page - 1) * pageSize
+    const total = await Animal.countDocuments()
+    const pages = Math.ceil(total / pageSize)
 
-    const page = parseInt(req.query.page) || 1;
-    const pageSize = parseInt(req.query.limit) || 5;
-    const skip = (page -1) * pageSize;
-    const total = await Animal.countDocuments();
-    const pages = Math.ceil(total/ pageSize);
-
-    const result = Animal.find().skip(skip).limit(pageSize);
+    const result = Animal.find().skip(skip).limit(pageSize)
 
     if (page > pages) {
-      throw new ErrorHandler(404), 'Page not found'
+      throw (new ErrorHandler(404), 'Page not found')
     }
 
-    const animals = await result;
+    const animals = await result
     if (!animals) {
       throw new ErrorHandler(401, 'Animals could not be found')
     }
-    res.status(200).json({ 
-      msg: 'fetched animals', 
+    res.status(200).json({
+      msg: 'fetched animals',
       animals: animals,
       page,
       pages,
-      count: animals.length 
+      count: animals.length,
     })
   } catch (error) {
     next(error)

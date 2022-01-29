@@ -1,7 +1,7 @@
 import AnimalForm from "../AnimalForm";
 import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ModalContext } from "../../../context/modalContext"
+import { ModalContext } from "../../../context/modalContext";
 import AnimalGallery from "../AnimalGallery/AnimalGallery";
 import UpdateImages from "./UpdateImages";
 import { useAuth } from "../../../hooks/useAuth";
@@ -52,7 +52,7 @@ const UpdateAnimal = () => {
     });
     const data = await res.json();
     if (res.status !== 200) {
-      handleModal(data.msg)
+      handleModal(data.msg);
     } else {
       navigate("/animals");
     }
@@ -71,7 +71,7 @@ const UpdateAnimal = () => {
       },
       body: JSON.stringify(img),
     });
-    const data = await res.json()
+    const data = await res.json();
     if (res.status !== 200) {
       handleModal(data.msg);
     }

@@ -5,7 +5,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import AnimalList from "./AnimalList/AnimalList";
 
 const Animals = () => {
-  const {pageNumber} = useParams; 
+  const { pageNumber } = useParams;
 
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -13,21 +13,21 @@ const Animals = () => {
   const [animalDefaultList, setAnimalDefaultList] = useState([]);
 
   const [pages, setPages] = useState(1);
-  const [page, setPage] = useState(pageNumber)
+  const [page, setPage] = useState(pageNumber);
 
   useEffect(() => {
     async function fetchAnimals() {
       setLoading(true);
       const res = await fetch(`http://localhost:8080/animal?page=${page}`);
       const data = await res.json();
-      console.log(res)
-      setPages(data.pages)
+      console.log(res);
+      setPages(data.pages);
       setAnimalDefaultList(data.animals);
       setAnimalList(data.animals);
       setLoading(false);
     }
     fetchAnimals();
-  }, [page]);
+  }, [page ,pages]);
 
   const updateInput = async (input) => {
     setLoading(true);
@@ -46,7 +46,12 @@ const Animals = () => {
       {loading ? (
         <Spinner />
       ) : animalList ? (
-        <AnimalList animalList={animalList}  page={page} setPage={setPage} pages={pages} />
+        <AnimalList
+          animalList={animalList}
+          page={page}
+          setPage={setPage}
+          pages={pages}
+        />
       ) : (
         <p>It looks like all animals have been adopted! :)</p>
       )}

@@ -6,10 +6,7 @@ const AnimalGallery = ({ images, clickHandler, specificStyles }) => {
       {images ? (
         <div className="flex flex-wrap w-full overflow-hidden">
           {images.map((image, index) => (
-            <figure
-              key={index}
-              className={`relative my-1 px-1 w-100 w-full`}
-            >
+            <figure key={index} className={`relative my-1 px-1 w-100 w-full`}>
               <img
                 className="object-cover h-full w-full"
                 src={image}

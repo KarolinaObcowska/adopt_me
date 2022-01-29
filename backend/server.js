@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import {handleValidationError} from './middleware/error.js'
+import { handleValidationError } from './middleware/error.js'
 import cookieParser from 'cookie-parser'
 import userRouter from './routes/user.js'
 import animalRouter from './routes/animal.js'

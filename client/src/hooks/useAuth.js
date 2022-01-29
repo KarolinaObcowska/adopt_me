@@ -38,7 +38,7 @@ export const AuthProvider = ({children}) => {
             handleModal(data.msg)
           } else {
             setAuthenticated(true)
-            navigate('/animals')
+            navigate('/animals/page/1')
           }
     }
 
@@ -70,7 +70,7 @@ export const AuthProvider = ({children}) => {
             handleModal(data.msg)
         } else {
             setAuthenticated(true)
-            navigate('/animals')
+            navigate('/animals/page/1')
         }
     }
 
