@@ -45,7 +45,7 @@ const Animals = () => {
       <SearchBar input={input} updateInput={updateInput} />
       {loading ? (
         <Spinner />
-      ) : animalList ? (
+      ) : animalList && animalList.length > 0 ? (
         <AnimalList
           animalList={animalList}
           page={page}
@@ -53,7 +53,7 @@ const Animals = () => {
           pages={pages}
         />
       ) : (
-        <p>It looks like all animals have been adopted! :)</p>
+        <p className="relative text-center mt-10">It looks like all these animals have been adopted! :)</p>
       )}
     </div>
   );
