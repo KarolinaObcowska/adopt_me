@@ -8,7 +8,7 @@ import { useAuth } from "../../hooks/useAuth";
 const Navbar = () => {
   const { authenticated } = useAuth();
   const ref = useRef();
-  const [isOpen, setNavbarOpen] = useState();
+  const [isOpen, setNavbarOpen] = useState(false);
 
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
@@ -66,9 +66,9 @@ const Navbar = () => {
             }
           >
             {authenticated === true ? (
-              <PrivateRoute setNavbarOpen={setNavbarOpen} isOpen={isOpen} />
+              <PrivateRoute setNavbarOpen={setNavbarOpen} />
             ) : (
-              <PublicRoute setNavbarOpen={setNavbarOpen} isOpen={isOpen} />
+              <PublicRoute setNavbarOpen={setNavbarOpen} />
             )}
           </div>
         </div>

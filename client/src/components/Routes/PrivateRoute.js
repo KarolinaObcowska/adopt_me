@@ -1,17 +1,17 @@
 import { useAuth } from "../../hooks/useAuth";
 import RouteItem from "./RouteItem";
 
-const PrivateRoute = ({ setNavbarOpen, isOpen }) => {
+const PrivateRoute = ({ setNavbarOpen }) => {
   const { logout } = useAuth();
   return (
     <div>
       <RouteItem
-        clickHandle={() => setNavbarOpen(!isOpen)}
+        clickHandle={() => setNavbarOpen(false)}
         location="/animals"
         text="Home"
       />
       <RouteItem
-        clickHandle={() => setNavbarOpen(!isOpen)}
+        clickHandle={() => setNavbarOpen(false)}
         location="/animals/add"
         text="Add Animal"
       />
