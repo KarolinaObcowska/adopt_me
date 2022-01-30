@@ -27,7 +27,7 @@ const Animals = () => {
       setLoading(false);
     }
     fetchAnimals();
-  }, [page ,pages]);
+  }, [page, pages]);
 
   const updateInput = async (input) => {
     setLoading(true);
