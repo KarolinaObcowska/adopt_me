@@ -7,7 +7,7 @@ const PrivateRoute = ({ setNavbarOpen, isOpen }) => {
     <div>
       <RouteItem
         clickHandle={() => setNavbarOpen(!isOpen)}
-        location="/animals/page/1"
+        location="/animals"
         text="Home"
       />
       <RouteItem

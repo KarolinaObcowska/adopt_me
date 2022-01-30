@@ -5,7 +5,6 @@ import { ModalContext } from "../context/modalContext";
 const Modal = () => {
   const { content, closeModal, visible } = useContext(ModalContext);
   if (visible) {
-    console.log(content);
     return createPortal(
       <>
         <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">

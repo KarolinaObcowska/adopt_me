@@ -33,7 +33,6 @@ export const AuthProvider = ({children}) => {
             body: JSON.stringify(user),
         });
         const data = await res.json()
-        console.log(data)
         if (!data.user) {
             handleModal(data.msg)
           } else {
@@ -43,7 +42,7 @@ export const AuthProvider = ({children}) => {
     }
 
     const logout = async() => {
-        const res = await fetch("http://localhost:8080/auth/logout", {
+        await fetch("http://localhost:8080/auth/logout", {
             method: "POST",
             credentials: 'include',
             headers: {

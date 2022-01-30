@@ -25,6 +25,7 @@ const AddAnimal = () => {
     age: "1, 2...",
     description: "Describe dog...",
   };
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setAnimal({

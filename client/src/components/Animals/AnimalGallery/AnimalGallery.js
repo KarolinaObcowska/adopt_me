@@ -3,7 +3,7 @@ import { CgCloseO } from "react-icons/cg";
 const AnimalGallery = ({ images, clickHandler, specificStyles }) => {
   return (
     <div className="container mx-auto ml-5 md:mt-0 mt-6 text-center">
-      {images ? (
+      {images && images.length > 0 ? (
         <div className="flex flex-wrap w-full overflow-hidden">
           {images.map((image, index) => (
             <figure key={index} className={`relative my-1 px-1 w-100 w-full`}>
@@ -22,7 +22,7 @@ const AnimalGallery = ({ images, clickHandler, specificStyles }) => {
           ))}
         </div>
       ) : (
-        <h2>This animal has not had any images yet.</h2>
+        <h2 className="">This animal has not had any images yet.</h2>
       )}
     </div>
   );

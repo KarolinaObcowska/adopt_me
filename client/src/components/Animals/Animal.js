@@ -15,7 +15,6 @@ const Animal = () => {
       const response = await fetch(`http://localhost:8080/animal/${id}`);
       const data = await response.json();
       setAnimal(data.animal);
-      console.log(data);
     }
     fetchAnimalById();
   }, [id]);
@@ -32,9 +31,6 @@ const Animal = () => {
     window.open("https://www.schroniskowroclaw.pl/", "_blank");
   }
 
-  const showFullSizeImage = (img) => {
-    img.style.transform = "scale(1.5)";
-  };
   return (
     <>
       {!animal ? (
@@ -54,6 +50,18 @@ const Animal = () => {
                 {animal.name}
               </span>
               <div className="mt-10 text-justify">
+                <h2 className="text-xl mb-5">Basic information</h2>
+                <p className="text-md text-gray-600 font-light">
+                Type: {animal.type}
+                </p>
+              <p className="text-md text-gray-600 font-light">
+                Breed: {animal.breed}
+                </p>
+                <p className="text-md text-gray-600 font-light">
+                Age: {animal.age}
+                </p>
+                <h2 className="text-xl my-5">Description</h2>
+
                 <p className="tab text-md text-gray-600 font-light">
                   {animal.description}
                 </p>
@@ -78,7 +86,6 @@ const Animal = () => {
 
             <AnimalGallery
               images={animal.images}
-              clickHandler={showFullSizeImage}
               specificStyles="hidden"
             />
 

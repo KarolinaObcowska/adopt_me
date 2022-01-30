@@ -54,7 +54,7 @@ const UpdateAnimal = () => {
     if (res.status !== 200) {
       handleModal(data.msg);
     } else {
-      navigate("/animals");
+      navigate(`/animals/${id}`);
     }
   }
 

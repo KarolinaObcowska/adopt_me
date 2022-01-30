@@ -1,8 +1,4 @@
 const Pagination = ({ pages, page, setPage }) => {
-  
- 
-  
-  console.log(page);
   return (
     pages > 1 && (
       <div className="relative mb-10">

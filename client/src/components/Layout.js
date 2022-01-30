@@ -21,7 +21,7 @@ const Layout = () => {
       <Routes>
         <Route path="/" exact element={<Hero />} />
         <Route path="/animals/add" exact element={<AddAnimal />} />
-        <Route path="/animals/page/:pageNumber" exact element={<Animals />} />
+        <Route path="/animals" exact element={<Animals />} />
         <Route path="/animals/:id" exact element={<Animal />} />
         <Route path="/animals/:id/update" exact element={<UpdateAnimal />} />
         <Route path="/auth/signup" exact element={<SignUpForm />} />
